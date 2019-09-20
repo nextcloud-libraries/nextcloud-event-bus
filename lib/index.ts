@@ -16,4 +16,8 @@ function getBus(): EventBus {
     }
 }
 
-export default getBus();
+const bus = getBus();
+
+export const subscribe = bus.subscribe
+export const unsubscribe = bus.unsubscribe
+export const emit = bus.emit
