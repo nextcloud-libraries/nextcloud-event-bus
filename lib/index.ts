@@ -18,6 +18,6 @@ function getBus(): EventBus {
 
 const bus = getBus();
 
-export const subscribe = bus.subscribe
-export const unsubscribe = bus.unsubscribe
-export const emit = bus.emit
+export const subscribe = bus.subscribe.bind(bus)
+export const unsubscribe = bus.unsubscribe.bind(bus)
+export const emit = bus.emit.bind(bus)
