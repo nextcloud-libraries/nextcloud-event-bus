@@ -19,8 +19,14 @@ export class SimpleBus implements EventBus {
         this.handlers.set(name, (this.handlers.get(name) || []).filter(h => h != handler));
     }
 
-    emit(event: Event): void {
-        (this.handlers.get(event.name) || []).forEach(h => h(event))
+    emit(name: string, event: Event): void {
+        (this.handlers.get(name) || []).forEach(h => {
+            try {
+                h(event)
+            } catch (e) {
+                console.error('could not invoke event listener', e)
+            }
+        })
     }
 
 }

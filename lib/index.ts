@@ -6,9 +6,9 @@ declare var OC: any;
 
 function getBus(): EventBus {
     // Either use an existing event bus instance or create one
-    if (OC && OC._eventBus) {
+    if ((typeof OC !== 'undefined') && OC._eventBus) {
         return new ProxyBus(OC._eventBus)
-    } else if (OC) {
+    } else if ((typeof OC !== 'undefined')) {
         return OC._eventBus = new SimpleBus()
     } else {
         console.warn('no global OC found, creating a local event bus')

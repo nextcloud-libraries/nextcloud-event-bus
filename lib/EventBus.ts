@@ -9,6 +9,6 @@ export interface EventBus {
 
     unsubscribe(name: string, handler: EventHandler): void;
 
-    emit(event: Event): void;
+    emit(name: string, event: Event): void;
 
 }
