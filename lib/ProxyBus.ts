@@ -28,8 +28,8 @@ export class ProxyBus implements EventBus {
         this.bus.unsubscribe(name, handler);
     }
 
-    emit(event: Event): void {
-        this.bus.emit(event);
+    emit(name: string, event: Event): void {
+        this.bus.emit(name, event);
     }
 
 }

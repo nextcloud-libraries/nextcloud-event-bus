@@ -13,8 +13,7 @@ const h = e => console.info(e)
 subscribe('a', h)
 subscribe('b', h)
 
-emit({
-    name: 'a',
+emit('a', {
     data: 123,
 })
 
