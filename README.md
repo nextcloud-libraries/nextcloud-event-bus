@@ -1,4 +1,7 @@
-# nextcloud-event-bus
+# @nextcloud/event-bus
+
+[![Build Status](https://travis-ci.com/nextcloud/nextcloud-event-bus.svg?branch=master)](https://travis-ci.com/nextcloud/nextcloud-event-bus)
+[![npm](https://img.shields.io/npm/v/@nextcloud/event-bus.svg)](https://www.npmjs.com/package/@nextcloud/event-bus)
 
 A event bus to communicate between Nextcloud components
 
@@ -6,7 +9,7 @@ A event bus to communicate between Nextcloud components
 
 ```js
 
-import { subscribe, unsubscribe, emit } from 'nextcloud-event-bus'
+import { subscribe, unsubscribe, emit } from '@nextcloud/event-bus'
 
 const h = e => console.info(e)
 
