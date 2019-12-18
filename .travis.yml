@@ -5,7 +5,7 @@ branches:
   - master
 script:
   - npm run build
-  - npm run test 
+  - npm run test
   - npm run build:doc
 deploy:
   provider: pages
@@ -14,4 +14,4 @@ deploy:
   keep-history: true
   local-dir: dist/doc
   on:
-    branch: master
+    tags: true
