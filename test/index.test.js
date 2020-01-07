@@ -1,7 +1,7 @@
 import { emit, subscribe, unsubscribe } from '../lib/index'
 
 test('readme example', () => {
-    const h = jest.fn(e => console.info(e))
+    const h = jest.fn()
 
     subscribe('a', h)
     subscribe('b', h)
@@ -15,7 +15,7 @@ test('readme example', () => {
 })
 
 test('unsubscribe', () => {
-    const h = jest.fn(e => console.info(e))
+    const h = jest.fn()
 
     subscribe('a', h)
     emit('a', {
