@@ -25,6 +25,34 @@ function getBus(): EventBus {
 
 const bus = getBus()
 
-export const subscribe = bus.subscribe.bind(bus)
-export const unsubscribe = bus.unsubscribe.bind(bus)
-export const emit = bus.emit.bind(bus)
+/**
+ * Register an event listener
+ *
+ * @param name name of the event
+ * @param handler callback invoked for every matching event emitted on the bus
+ */
+export function subscribe(name: string, handler: (string) => void): void {
+    bus.subscribe(name, handler)
+}
+
+/**
+ * Unregister a previously registered event listener
+ *
+ * Note: doesn't work with anonymous functions (closures). Use method of an object or store listener function in variable.
+ *
+ * @param name name of the event
+ * @param handler callback passed to `subscribed`
+ */
+export function unsubscribe(name: string, handler: (string) => void): void {
+    bus.unsubscribe(name, handler)
+}
+
+/**
+ * Emit an event
+ *
+ * @param name name of the event
+ * @param event event payload
+ */
+export function emit(name: string, event: object): void {
+    bus.emit(name, event)
+}
