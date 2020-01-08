@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@nextcloud/event-bus</title>
+	<title>@nextcloud/event-bus - v1.1.0</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">@nextcloud/event-bus</a>
+					<a href="index.html" class="title">@nextcloud/event-bus - v1.1.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -40,8 +40,6 @@
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 							<input type="checkbox" id="tsd-filter-externals" checked />
 							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -56,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> @nextcloud/event-bus</h1>
+			<h1> @nextcloud/event-bus - v1.1.0</h1>
 		</div>
 	</div>
 </header>
@@ -68,13 +66,17 @@
 					<h1>@nextcloud/event-bus</h1>
 				</a>
 				<p><a href="https://travis-ci.com/nextcloud/nextcloud-event-bus"><img src="https://travis-ci.com/nextcloud/nextcloud-event-bus.svg?branch=master" alt="Build Status"></a>
-				<a href="https://www.npmjs.com/package/@nextcloud/event-bus"><img src="https://img.shields.io/npm/v/@nextcloud/event-bus.svg" alt="npm"></a></p>
-				<p>A event bus to communicate between Nextcloud components</p>
+					<a href="https://www.npmjs.com/package/@nextcloud/event-bus"><img src="https://img.shields.io/npm/v/@nextcloud/event-bus.svg" alt="npm"></a>
+				<a href="https://nextcloud.github.io/nextcloud-event-bus/"><img src="https://img.shields.io/badge/Documentation-online-brightgreen" alt="Documentation"></a></p>
+				<p>A simple event bus to communicate between Nextcloud components.</p>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<pre><code><span class="hljs-built_in">npm</span> i -S @nextcloud/event-bus</code></pre>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<pre><code class="language-js">
-<span class="hljs-keyword">import</span> { subscribe, unsubscribe, emit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nextcloud/event-bus'</span>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> { emit, subscribe, unsubscribe } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nextcloud/event-bus'</span>
 
 <span class="hljs-keyword">const</span> h = <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> <span class="hljs-built_in">console</span>.info(e)
 
@@ -86,8 +88,7 @@ emit(<span class="hljs-string">'a'</span>, {
 })
 
 unsubscribe(<span class="hljs-string">'a'</span>, h)
-unsubscribe(<span class="hljs-string">'b'</span>, h)
-</code></pre>
+unsubscribe(<span class="hljs-string">'b'</span>, h)</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -96,37 +97,34 @@ unsubscribe(<span class="hljs-string">'b'</span>, h)
 					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
-					<li class="label tsd-is-external">
-						<span>Internals</span>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_lib_event_.html">&quot;lib/<wbr>Event&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_lib_eventbus_.html">&quot;lib/<wbr>Event<wbr>Bus&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_lib_eventhandler_.html">&quot;lib/<wbr>Event<wbr>Handler&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_lib_proxybus_.html">&quot;lib/<wbr>Proxy<wbr>Bus&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_lib_simplebus_.html">&quot;lib/<wbr>Simple<wbr>Bus&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_lib_index_.html">&quot;lib/index&quot;</a>
-					</li>
-					<li class="label tsd-is-external">
-						<span>Externals</span>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_package_.html">&quot;package&quot;</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-is-external">
+						<a href="classes/proxybus.html" class="tsd-kind-icon">Proxy<wbr>Bus</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-external">
+						<a href="classes/simplebus.html" class="tsd-kind-icon">Simple<wbr>Bus</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="interfaces/event.html" class="tsd-kind-icon">Event</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="interfaces/eventbus.html" class="tsd-kind-icon">Event<wbr>Bus</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="interfaces/eventhandler.html" class="tsd-kind-icon">Event<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#emit" class="tsd-kind-icon">emit</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#subscribe" class="tsd-kind-icon">subscribe</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#unsubscribe" class="tsd-kind-icon">unsubscribe</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
