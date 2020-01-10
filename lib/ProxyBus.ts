@@ -1,4 +1,4 @@
-import { major, valid } from 'semver';
+import semver from "semver";
 
 import packageJson from "../package.json";
 import { Event } from "./Event.js";
@@ -10,9 +10,9 @@ export class ProxyBus implements EventBus {
     private bus: EventBus;
 
     constructor(bus: EventBus) {
-        if (typeof bus.getVersion !== 'function' || !valid(bus.getVersion())) {
+        if (typeof bus.getVersion !== 'function' || !semver.valid(bus.getVersion())) {
             console.warn('Proxying an event bus with an unknown or invalid version')
-        } else if (major(bus.getVersion()) !== major(this.getVersion())) {
+        } else if (semver.major(bus.getVersion()) !== semver.major(this.getVersion())) {
             console.warn('Proxying an event bus of version ' + bus.getVersion() + ' with ' + this.getVersion())
         }
 
