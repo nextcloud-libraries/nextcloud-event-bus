@@ -36,7 +36,7 @@
     "@nextcloud/browserslist-config": "^1.0.0",
     "babel-jest": "^24.9.0",
     "babel-plugin-inline-json-import": "^0.3.2",
-    "jest": "^24.9.0",
+    "jest": "^25.1.0",
     "typedoc": "^0.16.7",
     "typescript": "^3.6.3"
   },
