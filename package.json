@@ -34,7 +34,7 @@
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-typescript": "^7.6.0",
     "@nextcloud/browserslist-config": "^1.0.0",
-    "babel-jest": "^24.9.0",
+    "babel-jest": "^25.1.0",
     "babel-plugin-inline-json-import": "^0.3.2",
     "jest": "^25.1.0",
     "typedoc": "^0.16.7",
