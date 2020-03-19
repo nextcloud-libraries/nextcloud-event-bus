@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SimpleBus | @nextcloud/event-bus - v1.1.2</title>
+	<title>SimpleBus | @nextcloud/event-bus</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@nextcloud/event-bus - v1.1.2</a>
+					<a href="../index.html" class="title">@nextcloud/event-bus</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -105,10 +105,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a name="handlers" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> handlers</h3>
-					<div class="tsd-signature tsd-kind-icon">handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/eventhandler.html" class="tsd-signature-type">EventHandler</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new Map&lt;string, EventHandler[]&gt;()</span></div>
+					<div class="tsd-signature tsd-kind-icon">handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/eventhandler.html" class="tsd-signature-type">EventHandler</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Map&lt;string, EventHandler[]&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nextcloud/nextcloud-event-bus/blob/c11d410/lib/SimpleBus.ts#L8">lib/SimpleBus.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/nextcloud/nextcloud-event-bus/blob/96d29a4/lib/SimpleBus.ts#L8">lib/SimpleBus.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -126,7 +126,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/eventbus.html">EventBus</a>.<a href="../interfaces/eventbus.html#emit">emit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/nextcloud/nextcloud-event-bus/blob/c11d410/lib/SimpleBus.ts#L22">lib/SimpleBus.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/nextcloud/nextcloud-event-bus/blob/96d29a4/lib/SimpleBus.ts#L22">lib/SimpleBus.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -153,7 +153,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/eventbus.html">EventBus</a>.<a href="../interfaces/eventbus.html#getversion">getVersion</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/nextcloud/nextcloud-event-bus/blob/c11d410/lib/SimpleBus.ts#L10">lib/SimpleBus.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/nextcloud/nextcloud-event-bus/blob/96d29a4/lib/SimpleBus.ts#L10">lib/SimpleBus.ts:10</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -171,7 +171,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/eventbus.html">EventBus</a>.<a href="../interfaces/eventbus.html#subscribe">subscribe</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/nextcloud/nextcloud-event-bus/blob/c11d410/lib/SimpleBus.ts#L14">lib/SimpleBus.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/nextcloud/nextcloud-event-bus/blob/96d29a4/lib/SimpleBus.ts#L14">lib/SimpleBus.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -198,7 +198,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/eventbus.html">EventBus</a>.<a href="../interfaces/eventbus.html#unsubscribe">unsubscribe</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/nextcloud/nextcloud-event-bus/blob/c11d410/lib/SimpleBus.ts#L18">lib/SimpleBus.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/nextcloud/nextcloud-event-bus/blob/96d29a4/lib/SimpleBus.ts#L18">lib/SimpleBus.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -262,8 +262,14 @@
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="../interfaces/eventhandler.html" class="tsd-kind-icon">Event<wbr>Handler</a>
 					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#bus" class="tsd-kind-icon">bus</a>
+					</li>
 					<li class=" tsd-kind-function">
 						<a href="../globals.html#emit" class="tsd-kind-icon">emit</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#getbus" class="tsd-kind-icon">get<wbr>Bus</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../globals.html#subscribe" class="tsd-kind-icon">subscribe</a>
