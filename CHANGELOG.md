@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.1.4 - 2020-04-06
+### Changed
+- Dependency updates
+### Fixed
+- Update vulnerable packages
+
 ## 1.1.3 - 2020-03-19
 ### Changed
 - Dependency updates
