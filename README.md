@@ -29,3 +29,14 @@ emit('a', {
 unsubscribe('a', h)
 unsubscribe('b', h)
 ```
+
+## Naming convention
+To stay consistent, we encourage you to use the following syntax when declaring events
+
+`app-id:action:verb`
+
+### Examples:
+- nextcloud:unified-search:close
+- contacts:contact:delete
+- calendar:event:create
+- forms:answer:update
