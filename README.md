@@ -33,7 +33,7 @@ unsubscribe('b', h)
 ## Naming convention
 To stay consistent, we encourage you to use the following syntax when declaring events
 
-`app-id:action:verb`
+`app-id:object:verb`
 
 ### Examples:
 - nextcloud:unified-search:close
