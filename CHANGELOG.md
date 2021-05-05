@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.0.0 - 2021-05-05
+### Breaking
+- Bump of @nextcloud/browserlist-config@2.1.0 which drops support for IE11
+
+### Changed
+- Move a single to transpiled library bundle
+- Dependency updates
+
+## 1.3.0 - 2021-05-05
+### Changed
+- Move a single to transpiled library bundle
+- Dependency updates
+
 ## 1.2.0 - 2020-06-03
 ### Changed
 - Dependency updates
