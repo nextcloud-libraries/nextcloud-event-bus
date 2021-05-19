@@ -36,7 +36,9 @@ To stay consistent, we encourage you to use the following syntax when declaring 
 `app-id:object:verb`
 
 ### Examples:
-- nextcloud:unified-search:close
-- contacts:contact:delete
-- calendar:event:create
-- forms:answer:update
+- nextcloud:unified-search:closed
+- files:file:uploading
+- files:file:uploaded
+- contacts:contact:deleted
+- calendar:event:created
+- forms:answer:updated
