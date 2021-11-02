@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.1.1 – 2021-11-02
+### Changed
+- Dependency updates
+
 ## 2.1.0 – 2021-09-28
 ### Changed
 - Dependency updates
