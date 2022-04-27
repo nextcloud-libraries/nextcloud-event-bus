@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { emit, subscribe, unsubscribe } from '../lib/index'
 
 test('readme example', () => {
