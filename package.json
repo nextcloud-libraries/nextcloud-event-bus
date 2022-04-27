@@ -1,14 +1,22 @@
 {
   "name": "@nextcloud/event-bus",
   "version": "2.1.1",
-  "description": "",
+  "description": "A simple event bus to communicate between Nextcloud components.",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    "import": "./dist/index.esm.js",
+    "require": "./dist/index.js"
+  },
+  "files": [
+    "dist/"
+  ],
   "scripts": {
-    "build": "babel ./lib --out-dir dist --extensions '.ts,.tsx' --source-maps && tsc --emitDeclarationOnly",
+    "build": "rollup --config rollup.config.js",
     "build:doc": "typedoc --out dist/doc lib/index.ts && touch dist/doc/.nojekyll",
-    "check-types": "tsc",
-    "dev": "babel ./lib --out-dir dist --extensions '.ts,.tsx' --watch",
+    "check-types": "tsc --noEmit",
+    "dev": "rollup --config rollup.config.js --watch",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
@@ -23,31 +31,17 @@
     "url": "https://github.com/nextcloud/nextcloud-event-bus"
   },
   "dependencies": {
-    "@types/semver": "^7.1.0",
-    "core-js": "^3.6.2",
-    "semver": "^7.3.2"
+    "semver": "^7.3.7"
   },
   "devDependencies": {
-    "@babel/cli": "^7.17.6",
-    "@babel/core": "^7.17.9",
-    "@babel/plugin-proposal-class-properties": "^7.16.7",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-typescript": "^7.16.7",
-    "@nextcloud/browserslist-config": "^2.2.0",
-    "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-commonjs": "^22.0.0",
-    "@rollup/plugin-node-resolve": "^13.2.1",
-    "babel-jest": "^28.0.2",
-    "babel-plugin-inline-json-import": "^0.3.2",
+    "@rollup/plugin-replace": "^4.0.0",
+    "@rollup/plugin-typescript": "^8.3.2",
+    "@types/semver": "^7.3.9",
     "jest": "^28.0.2",
     "jest-environment-jsdom": "^28.0.2",
     "rollup": "^2.70.2",
-    "rollup-plugin-inject-process-env": "^1.3.1",
-    "rollup-plugin-typescript2": "^0.31.0",
+    "tslib": "^2.4.0",
     "typedoc": "^0.22.15",
     "typescript": "^4.6.3"
-  },
-  "browserslist": [
-    "extends @nextcloud/browserslist-config"
-  ]
+  }
 }

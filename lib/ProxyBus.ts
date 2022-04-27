@@ -1,7 +1,6 @@
 import valid from "semver/functions/valid";
 import major from "semver/functions/major";
 
-import packageJson from "../package.json";
 import { Event } from "./Event.js";
 import { EventBus } from "./EventBus.js";
 import { EventHandler } from "./EventHandler.js";
@@ -21,7 +20,7 @@ export class ProxyBus implements EventBus {
     }
 
     getVersion(): string {
-        return packageJson.version
+        return globalThis.__pkg_version;
     }
 
     subscribe(name: string, handler: EventHandler): void {

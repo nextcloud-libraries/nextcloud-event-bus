@@ -2,11 +2,14 @@ import { EventBus } from "./EventBus"
 import { ProxyBus } from "./ProxyBus"
 import { SimpleBus } from "./SimpleBus"
 
+export { ProxyBus } from "./ProxyBus"
+export { SimpleBus } from "./SimpleBus";
+
 declare global {
-    interface Window {
-        OC: any
-        _nc_event_bus: any
-    }
+  interface Window {
+    OC: any;
+    _nc_event_bus: any;
+  }
 }
 
 function getBus(): EventBus {

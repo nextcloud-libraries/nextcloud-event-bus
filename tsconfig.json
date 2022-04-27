@@ -1,17 +1,13 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "module": "es2015",
-        "declaration": true,
-        "outDir": "./dist",
-        "strict": true,
-        "lib": [
-            "es6",
-            "dom"
-        ],
-        "noImplicitAny": false,
-        "resolveJsonModule": true,
-        "esModuleInterop": true,
-        "moduleResolution": "node"
-    }
+  "include": ["./lib/**/*.ts"],
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "module": "esnext",
+    "declaration": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "outDir": "./dist"
+  }
 }

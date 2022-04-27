@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { emit, subscribe, unsubscribe } from '../lib/index'
+const { emit, subscribe, unsubscribe } = require('../dist/index')
 
 test('readme example', () => {
     const h = jest.fn()

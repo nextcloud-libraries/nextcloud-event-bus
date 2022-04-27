@@ -1,5 +1,7 @@
-import { SimpleBus } from '../lib/SimpleBus'
-import { ProxyBus } from '../lib/ProxyBus'
+/**
+ * @jest-environment jsdom
+ */
+const { SimpleBus, ProxyBus } = require('../dist')
 
 describe('ProxyBus', () => {
     test('proxy invalid bus', () => {
