@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.2.0-next
+### Changed
+- Update dependencies
+- Fix rollup build
+- Remove babel
+  - Typescript already is able to generate code that is in compliance with es5
+- Remove package.json from generated code.
+  - Use @rollup/plugin-replace to handle this.
+- Add ESM support
+  - Improve native usage support
+  - Improve bundle size
+- Fix invalid typescript typings export
+- Remove unnecessary files from npm package
+
+
 ## 2.1.1 – 2021-11-02
 ### Changed
 - Dependency updates
