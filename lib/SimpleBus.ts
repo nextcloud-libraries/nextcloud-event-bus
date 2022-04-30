@@ -1,4 +1,3 @@
-import packageJson from "../package.json";
 import { Event } from "./Event.js";
 import { EventBus } from "./EventBus.js";
 import { EventHandler } from "./EventHandler.js";
@@ -8,7 +7,7 @@ export class SimpleBus implements EventBus {
     private handlers = new Map<string, EventHandler[]>();
 
     getVersion(): string {
-        return packageJson.version
+      return globalThis.__pkg_version;
     }
 
     subscribe(name: string, handler: EventHandler): void {
