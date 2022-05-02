@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## 2.2.0-next
+## 3.0.0 - 2022-05-02
 ### Changed
 - Update dependencies
 - Fix rollup build
