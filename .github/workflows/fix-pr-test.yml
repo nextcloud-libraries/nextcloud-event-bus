@@ -1,9 +1,0 @@
-name: test
-on:
-  pull_request:
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - run: 'echo "No build required" '
