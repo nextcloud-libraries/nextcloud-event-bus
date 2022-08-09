@@ -60,10 +60,5 @@ npm run test
 
 ### Requirements
 
-- [Node 14 or higher](https://nodejs.org/en/download/)
-- [NPM 7 or higher](https://www.npmjs.com/package/npm)
-
-### Recommendations
-
-- [Node 16](https://nodejs.org/en/download/)
-- [NPM 8](https://www.npmjs.com/package/npm)
+- [Node 16 or higher](https://nodejs.org/en/download/)
+- [NPM 8 or higher](https://www.npmjs.com/package/npm)
