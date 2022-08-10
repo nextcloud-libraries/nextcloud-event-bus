@@ -8,8 +8,12 @@ A simple event bus to communicate between Nextcloud components.
 
 ## Installation
 
+```sh
+npm install @nextcloud/event-bus --save
 ```
-npm i -S @nextcloud/event-bus
+
+```sh
+yarn add @nextcloud/event-bus
 ```
 
 ## Usage
@@ -31,14 +35,30 @@ unsubscribe('b', h)
 ```
 
 ## Naming convention
+
 To stay consistent, we encourage you to use the following syntax when declaring events
 
 `app-id:object:verb`
 
 ### Examples:
-- nextcloud:unified-search:closed
-- files:file:uploading
-- files:file:uploaded
-- contacts:contact:deleted
-- calendar:event:created
-- forms:answer:updated
+
+- `nextcloud:unified-search:closed`
+- `files:file:uploading`
+- `files:file:uploaded`
+- `contacts:contact:deleted`
+- `calendar:event:created`
+- `forms:answer:updated`
+
+## Development
+
+```sh
+npm install
+
+npm run build
+npm run test
+```
+
+### Requirements
+
+- [Node 16 or higher](https://nodejs.org/en/download/)
+- [NPM 8 or higher](https://www.npmjs.com/package/npm)

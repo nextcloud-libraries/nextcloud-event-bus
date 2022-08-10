@@ -2,6 +2,10 @@ import { EventBus } from "./EventBus"
 import { ProxyBus } from "./ProxyBus"
 import { SimpleBus } from "./SimpleBus"
 
+export type { EventBus } from './EventBus'
+export type { EventHandler } from "./EventHandler";
+export type { Event } from "./Event";
+
 export { ProxyBus } from "./ProxyBus"
 export { SimpleBus } from "./SimpleBus";
 
