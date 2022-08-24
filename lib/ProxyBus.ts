@@ -1,5 +1,5 @@
-import valid from "semver/functions/valid";
-import major from "semver/functions/major";
+import valid from "semver/functions/valid.js";
+import major from "semver/functions/major.js";
 
 import { Event } from "./Event.js";
 import { EventBus } from "./EventBus.js";
