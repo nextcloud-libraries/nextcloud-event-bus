@@ -3,7 +3,7 @@ import replace from '@rollup/plugin-replace'
 
 import pkg from './package.json'
 
-const external = ['semver/functions/valid', 'semver/functions/major']
+const external = [/semver/]
 
 const replacePlugin = replace({
   preventAssignment: true,

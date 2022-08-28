@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.1 - 2022-08-24
+### Changed
+- Update dependencies
+- Improve native ESM Support
+
+
 ## 3.0.0 - 2022-05-02
 ### Changed
 - Update dependencies

@@ -7,4 +7,5 @@ updates:
     day: saturday
     time: "03:00"
     timezone: Europe/Paris
+  versioning-strategy: increase
   open-pull-requests-limit: 10
