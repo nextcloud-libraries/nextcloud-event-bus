@@ -1,8 +1,7 @@
 {
   "name": "@nextcloud/event-bus",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "A simple event bus to communicate between Nextcloud components.",
-  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
