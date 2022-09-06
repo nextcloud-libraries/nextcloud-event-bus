@@ -2,7 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.0.2](https://github.com/nextcloud/nextcloud-event-bus/tree/v3.0.2) (2022-09-05)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-event-bus/compare/v3.0.1...v3.0.2)
+
+## Closed pull requests
+
+- 🩹 Remove type=module [\#534](https://github.com/nextcloud/nextcloud-event-bus/pull/534) ([vinicius73](https://github.com/vinicius73))
+
 ## 3.0.1 - 2022-08-24
+   ⚠️ deprecated
 ### Changed
 - Update dependencies
 - Improve native ESM Support
