@@ -31,7 +31,7 @@
     "url": "https://github.com/nextcloud/nextcloud-event-bus"
   },
   "dependencies": {
-    "semver": "^7.3.7"
+    "semver": "^7.3.8"
   },
   "devDependencies": {
     "@rollup/plugin-replace": "^4.0.0",
