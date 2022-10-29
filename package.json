@@ -34,7 +34,7 @@
     "semver": "^7.3.8"
   },
   "devDependencies": {
-    "@rollup/plugin-replace": "^4.0.0",
+    "@rollup/plugin-replace": "^5.0.1",
     "@rollup/plugin-typescript": "^8.5.0",
     "@types/semver": "^7.3.13",
     "jest": "^28.1.3",
