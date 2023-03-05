@@ -1,7 +1,7 @@
 import typescript from '@rollup/plugin-typescript'
 import replace from '@rollup/plugin-replace'
 
-import pkg from './package.json'
+import pkg from './package.json' assert { type: 'json' }
 
 const external = [/semver/]
 
@@ -25,7 +25,7 @@ export default [
     ],
     output: [
       {
-        dir: 'dist',
+        file: 'dist/index.cjs',
         format: 'cjs',
         sourcemap: true,
       },
@@ -37,7 +37,7 @@ export default [
     plugins: [typescript(), replacePlugin],
     output: [
       {
-        file: 'dist/index.esm.js',
+        file: 'dist/index.mjs',
         format: 'esm',
         sourcemap: true,
       },

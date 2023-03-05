@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-const { SimpleBus, ProxyBus } = require('../dist')
+const { SimpleBus, ProxyBus } = require('..')
 
 describe('ProxyBus', () => {
     test('proxy invalid bus', () => {

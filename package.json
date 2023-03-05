@@ -2,21 +2,23 @@
   "name": "@nextcloud/event-bus",
   "version": "3.0.2",
   "description": "A simple event bus to communicate between Nextcloud components.",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/index.cjs",
   "types": "dist/index.d.ts",
   "exports": {
-    "import": "./dist/index.esm.js",
-    "require": "./dist/index.js"
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
   },
   "files": [
     "dist/"
   ],
   "scripts": {
-    "build": "rollup --config rollup.config.js",
+    "build": "rollup --config rollup.config.mjs",
     "build:doc": "typedoc --out dist/doc lib/index.ts && touch dist/doc/.nojekyll",
     "check-types": "tsc --noEmit",
-    "dev": "rollup --config rollup.config.js --watch",
+    "dev": "rollup --config rollup.config.mjs --watch",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
