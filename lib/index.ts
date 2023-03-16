@@ -16,21 +16,35 @@ declare global {
   }
 }
 
+let bus: EventBus | null = null
+
 function getBus(): EventBus {
-    if ((typeof window.OC !== 'undefined') && window.OC._eventBus && typeof window._nc_event_bus === 'undefined') {
+    if (bus !== null) {
+        return bus
+    }
+
+    if (typeof window === 'undefined') {
+        // testing or SSR
+        return new Proxy({} as EventBus, {
+            get: () => {
+                return () => console.error('Window not available, EventBus can not be established!')
+            }
+        })
+    }
+
+    if (typeof window.OC !== 'undefined' && window.OC._eventBus && typeof window._nc_event_bus === 'undefined') {
         console.warn('found old event bus instance at OC._eventBus. Update your version!')
         window._nc_event_bus = window.OC._eventBus
     }
 
     // Either use an existing event bus instance or create one
-    if (typeof window._nc_event_bus !== 'undefined') {
-        return new ProxyBus(window._nc_event_bus)
+    if (typeof window?._nc_event_bus !== 'undefined') {
+        bus = new ProxyBus(window._nc_event_bus)
     } else {
-        return window._nc_event_bus = new SimpleBus()
+        bus = window._nc_event_bus = new SimpleBus()
     }
+    return bus
 }
-
-const bus = getBus()
 
 /**
  * Register an event listener
@@ -39,7 +53,7 @@ const bus = getBus()
  * @param handler callback invoked for every matching event emitted on the bus
  */
 export function subscribe(name: string, handler: (string) => void): void {
-    bus.subscribe(name, handler)
+    getBus().subscribe(name, handler)
 }
 
 /**
@@ -51,7 +65,7 @@ export function subscribe(name: string, handler: (string) => void): void {
  * @param handler callback passed to `subscribed`
  */
 export function unsubscribe(name: string, handler: (string) => void): void {
-    bus.unsubscribe(name, handler)
+    getBus().unsubscribe(name, handler)
 }
 
 /**
@@ -61,5 +75,5 @@ export function unsubscribe(name: string, handler: (string) => void): void {
  * @param event event payload
  */
 export function emit(name: string, event: object): void {
-    bus.emit(name, event)
+    getBus().emit(name, event)
 }
