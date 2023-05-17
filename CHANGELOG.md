@@ -2,11 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.1.0](https://github.com/nextcloud/nextcloud-event-bus/tree/v3.1.0) (2023-05-17)
+
+[Full Changelog](https://github.com/nextcloud/nextcloud-event-bus/compare/v3.0.2...v3.1.0)
+
+### Changed
+- Updated dependencies
+- Initialize bus on first usage not on import [\#587](https://github.com/nextcloud/nextcloud-event-bus/pull/587) ([susnux](https://github.com/susnux))
+
+### Fixed
+- Allow package to be imported by native Node ES module projects [\#586](https://github.com/nextcloud/nextcloud-event-bus/pull/586) ([susnux](https://github.com/susnux))
+
+
 ## [v3.0.2](https://github.com/nextcloud/nextcloud-event-bus/tree/v3.0.2) (2022-09-05)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-event-bus/compare/v3.0.1...v3.0.2)
 
-## Closed pull requests
+### Closed pull requests
 
 - 🩹 Remove type=module [\#534](https://github.com/nextcloud/nextcloud-event-bus/pull/534) ([vinicius73](https://github.com/vinicius73))
 
