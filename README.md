@@ -1,6 +1,5 @@
 # @nextcloud/event-bus
-[![Build Status](https://img.shields.io/github/actions/workflow/status/nextcloud/nextcloud-event-bus/node.yml?branch=master)](https://github.com/nextcloud/nextcloud-event-bus/actions/workflows/node.yml?query=branch%3Amaster)
-[![npm](https://img.shields.io/npm/v/@nextcloud/event-bus.svg)](https://www.npmjs.com/package/@nextcloud/event-bus)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/nextcloud/nextcloud-event-bus/node.yml?branch=master)](https://github.com/nextcloud/nextcloud-event-bus/actions/workflows/node.yml?query=branch%3Amaster) [![Code coverage](https://img.shields.io/codecov/c/gh/nextcloud/nextcloud-event-bus/master)](https://app.codecov.io/gh/nextcloud/nextcloud-event-bus) [![npm](https://img.shields.io/npm/v/@nextcloud/event-bus.svg)](https://www.npmjs.com/package/@nextcloud/event-bus)
 [![Documentation](https://img.shields.io/badge/Documentation-online-brightgreen)](https://nextcloud.github.io/nextcloud-event-bus/)
 
 A simple event bus to communicate between Nextcloud components.
