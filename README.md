@@ -41,8 +41,9 @@ To stay consistent, we encourage you to use the following syntax when declaring 
 ### Examples:
 
 - `nextcloud:unified-search:closed`
-- `files:file:uploading`
-- `files:file:uploaded`
+- `files:node:uploading`
+- `files:node:uploaded`
+- `files:node:deleted`
 - `contacts:contact:deleted`
 - `calendar:event:created`
 - `forms:answer:updated`
