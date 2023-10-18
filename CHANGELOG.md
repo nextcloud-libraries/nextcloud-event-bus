@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.2.0](https://github.com/nextcloud/nextcloud-event-bus/tree/v3.2.0) (2024-04-21)
+
+### Changed
+- Add missing nodes typing for docs by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/606
+- Add missing unit tests and use Typescript also for test by @susnux in https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/630
+- chore: update node engines to next LTS by @nextcloud-command in https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/621
+- fix: Use organization workflow for node test ci by @susnux in https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/629
+- fix(ci): Update documentation workflow from organization by @susnux in https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/628
+
+### Dependencies
+- chore(deps-dev): Bump @rollup/plugin-replace from 5.0.2 to 5.0.3 by @dependabot
+- chore(deps-dev): Bump @rollup/plugin-typescript from 11.1.1 to 11.1.5 by @dependabot
+- chore(deps-dev): Bump @types/node from 20.3.3 to 20.4.1 by @dependabot
+- chore(deps-dev): Bump @types/semver from 7.5.0 to 7.5.3 by @dependabot
+- chore(deps-dev): Bump jest from 29.5.0 to 29.7.0 by @dependabot
+- chore(deps-dev): Bump jest-environment-jsdom from 29.5.0 to 29.7.0 by @dependabot
+- chore(deps-dev): Bump rollup from 2.79.1 to 4.0.2 by @dependabot
+- chore(deps-dev): Bump semver from 7.5.3 to 7.5.4 by @dependabot
+- chore(deps-dev): Bump tslib from 2.5.0 to 2.6.2 by @dependabot
+- chore(deps-dev): Bump typedoc from 0.24.7 to 0.25.2 by @dependabot
+- chore(deps-dev): Bump typescript from 5.0.4 to 5.2.2 by @dependabot
+- chore(deps-dev): Bump word-wrap from 1.2.3 to 1.2.4 by @dependabot
+- chore(deps): Bump @types/node from 20.1.7 to 20.8.6 by @dependabot
+- chore(deps): Bump semver from 7.5.1 to 7.5.3 by @dependabot
+- chore(deps): Bump tough-cookie from 4.1.2 to 4.1.3 by @dependabot
+
 ## [v3.1.0](https://github.com/nextcloud/nextcloud-event-bus/tree/v3.1.0) (2023-05-17)
 
 [Full Changelog](https://github.com/nextcloud/nextcloud-event-bus/compare/v3.0.2...v3.1.0)
