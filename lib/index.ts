@@ -1,4 +1,6 @@
 import { EventBus } from "./EventBus"
+import { EventHandler } from "./EventHandler";
+import { Event } from "./Event";
 import { ProxyBus } from "./ProxyBus"
 import { SimpleBus } from "./SimpleBus"
 
@@ -52,7 +54,7 @@ function getBus(): EventBus {
  * @param name name of the event
  * @param handler callback invoked for every matching event emitted on the bus
  */
-export function subscribe(name: string, handler: (string) => void): void {
+export function subscribe(name: string, handler: EventHandler): void {
     getBus().subscribe(name, handler)
 }
 
@@ -64,7 +66,7 @@ export function subscribe(name: string, handler: (string) => void): void {
  * @param name name of the event
  * @param handler callback passed to `subscribed`
  */
-export function unsubscribe(name: string, handler: (string) => void): void {
+export function unsubscribe(name: string, handler: EventHandler): void {
     getBus().unsubscribe(name, handler)
 }
 
@@ -74,6 +76,6 @@ export function unsubscribe(name: string, handler: (string) => void): void {
  * @param name name of the event
  * @param event event payload
  */
-export function emit(name: string, event: object): void {
+export function emit(name: string, event: Event): void {
     getBus().emit(name, event)
 }

@@ -1,1 +1,1 @@
-export interface Event { }
+export type Event = object | number | string | boolean | null | undefined
