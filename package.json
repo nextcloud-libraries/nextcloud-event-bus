@@ -34,7 +34,7 @@
     "url": "https://github.com/nextcloud/nextcloud-event-bus"
   },
   "dependencies": {
-    "@types/node": "^20.11.28",
+    "@types/node": "^20.11.30",
     "semver": "^7.6.0"
   },
   "devDependencies": {
