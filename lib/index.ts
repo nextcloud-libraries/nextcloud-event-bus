@@ -1,12 +1,12 @@
 import { EventBus } from "./EventBus"
 import { EventHandler } from "./EventHandler";
-import { Event } from "./Event";
+import { NextcloudEvents } from "./Event";
 import { ProxyBus } from "./ProxyBus"
 import { SimpleBus } from "./SimpleBus"
 
 export type { EventBus } from './EventBus'
 export type { EventHandler } from "./EventHandler";
-export type { Event } from "./Event";
+export type { Event, NextcloudEvents } from "./Event";
 
 export { ProxyBus } from "./ProxyBus"
 export { SimpleBus } from "./SimpleBus";
@@ -54,7 +54,7 @@ function getBus(): EventBus {
  * @param name name of the event
  * @param handler callback invoked for every matching event emitted on the bus
  */
-export function subscribe(name: string, handler: EventHandler): void {
+export function subscribe<K extends keyof NextcloudEvents>(name: K, handler: EventHandler<NextcloudEvents[K]>): void {
     getBus().subscribe(name, handler)
 }
 
@@ -66,7 +66,7 @@ export function subscribe(name: string, handler: EventHandler): void {
  * @param name name of the event
  * @param handler callback passed to `subscribed`
  */
-export function unsubscribe(name: string, handler: EventHandler): void {
+export function unsubscribe<K extends keyof NextcloudEvents>(name: K, handler: EventHandler<NextcloudEvents[K]>): void {
     getBus().unsubscribe(name, handler)
 }
 
@@ -76,6 +76,6 @@ export function unsubscribe(name: string, handler: EventHandler): void {
  * @param name name of the event
  * @param event event payload
  */
-export function emit(name: string, event: Event): void {
+export function emit<K extends keyof NextcloudEvents>(name: K, event: NextcloudEvents[K]): void {
     getBus().emit(name, event)
 }

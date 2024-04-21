@@ -1,5 +1,5 @@
 import { Event } from "./Event";
 
-export interface EventHandler {
-    (event: Event): void
+export interface EventHandler<T extends Event> {
+    (event: T): void
 }
