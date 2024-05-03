@@ -3,12 +3,11 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "target": "ESNext",
-    "module": "esnext",
+    "module": "ESNext",
     "declaration": true,
     "strict": true,
-    "noImplicitAny": false,
     "outDir": "./dist",
     "resolveJsonModule": true
   }

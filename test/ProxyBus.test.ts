@@ -1,11 +1,11 @@
 import type { EventBus } from '../lib/EventBus'
 
-import { afterAll, afterEach, describe, expect, jest, test } from '@jest/globals'
+import { afterAll, afterEach, describe, expect, vi, test } from 'vitest'
 import { ProxyBus } from '../lib/ProxyBus'
 import { SimpleBus } from '../lib/SimpleBus'
 
 describe('ProxyBus', () => {
-    const consoleWarn = jest.spyOn(window.console, 'warn')
+    const consoleWarn = vi.spyOn(window.console, 'warn')
 
     afterAll(() => consoleWarn.mockRestore())
     afterEach(() => {
@@ -15,7 +15,7 @@ describe('ProxyBus', () => {
 
     test('proxy invalid bus', () => {
         consoleWarn.mockImplementationOnce(() => {})
-        const invalidBus = { emit: jest.fn() }
+        const invalidBus = { emit: vi.fn() }
         // @ts-ignore
         const proxy = new ProxyBus(invalidBus as EventBus)
 
@@ -28,15 +28,15 @@ describe('ProxyBus', () => {
 
     test('proxy old bus', () => {
         consoleWarn.mockImplementationOnce(() => {})
-        const emit = jest.fn()
+        const emit = vi.fn()
 
         const bus = new ProxyBus({
             getVersion() {
                 return '0.0.1'
             },
             emit,
-            subscribe: jest.fn(),
-            unsubscribe: jest.fn(),
+            subscribe: vi.fn(() => {}),
+            unsubscribe: vi.fn(() => {}),
         })
         bus.emit('test', { msg: 'hello' })
 
@@ -46,7 +46,7 @@ describe('ProxyBus', () => {
     })
 
     test('subscribe', () => {
-        const cb = jest.fn()
+        const cb = vi.fn()
         const bus = new SimpleBus()
 
         const proxyBus = new ProxyBus(bus)
@@ -57,7 +57,7 @@ describe('ProxyBus', () => {
     })
 
     test('unsubscribe', () => {
-        const cb = jest.fn()
+        const cb = vi.fn()
         const bus = new SimpleBus()
 
         const proxyBus = new ProxyBus(bus)
@@ -71,7 +71,7 @@ describe('ProxyBus', () => {
     })
 
     test('proxy', () => {
-        const cb = jest.fn()
+        const cb = vi.fn()
         const bus = new SimpleBus()
         bus.subscribe('aa', cb)
 

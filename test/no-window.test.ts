@@ -1,15 +1,15 @@
 /**
- * @jest-environment node
+ * @vitest-environment node
  */
 
-import { afterAll, beforeEach, describe, expect, jest, test } from "@jest/globals"
+import { afterAll, beforeEach, describe, expect, vi, test } from "vitest"
 
 describe('Handle no window', () => {
-    const consoleError = jest.spyOn(console, 'error')
-    const consoleWarn = jest.spyOn(console, 'warn')
+    const consoleError = vi.spyOn(console, 'error')
+    const consoleWarn = vi.spyOn(console, 'warn')
 
     afterAll(() => {
-        jest.restoreAllMocks()
+        vi.restoreAllMocks()
     })
     beforeEach(() => {
         // @ts-ignore
@@ -18,13 +18,13 @@ describe('Handle no window', () => {
         consoleWarn.mockReset()
 
         // reset modules to invalidate the local bus variable
-        jest.resetModules()
+        vi.resetModules()
     })
 
     test('No window available', async () => {
         const { subscribe } = await import("../lib")
 
-        const cb = jest.fn()
+        const cb = vi.fn()
         subscribe('test', cb)
         expect(consoleError).toHaveBeenCalledTimes(1)
         expect(consoleError.mock.calls[0][0]).toMatch(/Window not available/)
@@ -36,7 +36,7 @@ describe('Handle no window', () => {
 
         const { subscribe, SimpleBus } = await import("../lib")
 
-        const cb = jest.fn()
+        const cb = vi.fn()
         subscribe('test', cb)
         // new bus is created
         expect(global.window?._nc_event_bus instanceof SimpleBus).toBe(true)
@@ -45,13 +45,13 @@ describe('Handle no window', () => {
     test('Old OC eventbus', async () => {
         consoleWarn.mockImplementation(() => {})
 
-        const oldBus = { subscribe: jest.fn(), emit: jest.fn() }
+        const oldBus = { subscribe: vi.fn(), emit: vi.fn() }
         // @ts-ignore
         global.window = { OC: { _eventBus: oldBus }}
 
         const { emit, subscribe } = await import("../lib")
 
-        subscribe('test', jest.fn())
+        subscribe('test', vi.fn())
         expect(consoleWarn).toHaveBeenCalled()
         expect(consoleWarn.mock.calls[0][0]).toMatch(/old event bus instance at OC\._eventBus/)
         // old bus set to new bus variable
