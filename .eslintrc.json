@@ -1,8 +1,5 @@
 {
-	"extends": [
-		"@nextcloud",
-		"prettier"
-	],
+	"extends": ["@nextcloud", "prettier"],
 	"ignorePatterns": ["dist"],
 	"rules": {
 		"camelcase": ["error", { "allow": ["__pkg_version", "_nc_event_bus"] }]

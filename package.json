@@ -2,9 +2,17 @@
   "name": "@nextcloud/event-bus",
   "version": "3.2.0",
   "description": "A simple event bus to communicate between Nextcloud components.",
+  "keywords": [
+    "nextcloud"
+  ],
+  "homepage": "https://github.com/nextcloud/nextcloud-event-bus#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nextcloud/nextcloud-event-bus"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "Christoph Wurst",
   "type": "module",
-  "main": "dist/index.cjs",
-  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -12,6 +20,8 @@
       "require": "./dist/index.cjs"
     }
   },
+  "main": "dist/index.cjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist/"
   ],
@@ -19,33 +29,29 @@
     "build": "vite --mode production build",
     "build:doc": "typedoc --out dist/doc lib/index.ts && touch dist/doc/.nojekyll",
     "dev": "vite --mode development build --watch",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest run --watch"
   },
-  "keywords": [
-    "nextcloud"
-  ],
-  "homepage": "https://github.com/nextcloud/nextcloud-event-bus#readme",
-  "author": "Christoph Wurst",
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nextcloud/nextcloud-event-bus"
-  },
+  "prettier": "@nextcloud/prettier-config",
   "dependencies": {
     "@types/node": "^20.12.8",
     "semver": "^7.6.0"
   },
   "devDependencies": {
     "@nextcloud/eslint-config": "^8.3.0",
+    "@nextcloud/prettier-config": "^1.1.0",
     "@nextcloud/vite-config": "^1.2.3",
     "@types/semver": "^7.5.8",
     "@vitest/coverage-v8": "^1.6.0",
     "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
     "happy-dom": "^14.7.1",
+    "prettier": "^3.2.5",
     "typedoc": "^0.25.13",
     "typescript": "^5.4.5",
     "vite": "^5.2.11",
