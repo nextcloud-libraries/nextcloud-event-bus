@@ -32,6 +32,35 @@ unsubscribe('a', h)
 unsubscribe('b', h)
 ```
 
+### Typed events
+
+It is also possible to type events, which allows type infering on the event-bus methods like `emit`, `subscribe` and `unsubscribe`.
+To register new events, simply extend the `NextcloudEvents` interface:
+
+1. Create a file like `event-bus.d.ts`:
+```ts
+declare module '@nextcloud/event-bus' {
+    interface NextcloudEvents {
+        'example-app:awesomeness:increased': { level: number }
+    }
+}
+
+export {}
+```
+2. Now if you use any of the event bus functions, the parameters will automatically be typed correctly:
+```ts
+import { subscribe } from '@nextcloud/event-bus'
+
+subscribe(
+    'example-app:awesomeness:increased',
+    (event) => {
+        // "event" automatically infers type { level: number}
+        console.log(event.level)
+    },
+)
+```
+
+
 ## Naming convention
 
 To stay consistent, we encourage you to use the following syntax when declaring events

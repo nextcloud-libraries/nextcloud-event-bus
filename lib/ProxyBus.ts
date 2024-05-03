@@ -1,15 +1,15 @@
 import valid from "semver/functions/valid.js";
 import major from "semver/functions/major.js";
 
-import { Event } from "./Event.js";
+import type { Event, GenericEvents, NextcloudEvents } from "./Event.js";
 import { EventBus } from "./EventBus.js";
 import { EventHandler } from "./EventHandler.js";
 
-export class ProxyBus implements EventBus {
+export class ProxyBus<E extends GenericEvents = NextcloudEvents> implements EventBus<E> {
 
-    private bus: EventBus;
+    private bus: EventBus<E>;
 
-    constructor(bus: EventBus) {
+    constructor(bus: EventBus<E>) {
         if (typeof bus.getVersion !== 'function' || !valid(bus.getVersion())) {
             console.warn('Proxying an event bus with an unknown or invalid version')
         } else if (major(bus.getVersion()) !== major(this.getVersion())) {
@@ -23,15 +23,15 @@ export class ProxyBus implements EventBus {
         return globalThis.__pkg_version;
     }
 
-    subscribe(name: string, handler: EventHandler): void {
+    subscribe<EventName extends keyof E>(name: EventName, handler: EventHandler<E[EventName]>): void {
         this.bus.subscribe(name, handler);
     }
 
-    unsubscribe(name: string, handler: EventHandler): void {
+    unsubscribe<EventName extends keyof E>(name: EventName, handler: EventHandler<E[EventName]>): void {
         this.bus.unsubscribe(name, handler);
     }
 
-    emit(name: string, event: Event): void {
+    emit<EventName extends keyof E>(name: EventName, event: E[EventName]): void {
         this.bus.emit(name, event);
     }
 
