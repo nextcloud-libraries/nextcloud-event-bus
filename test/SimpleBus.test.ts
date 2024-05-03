@@ -1,7 +1,6 @@
 import { afterAll, afterEach, describe, expect, vi, test } from 'vitest'
 import { SimpleBus } from '../lib/SimpleBus'
-
-declare const __pkg_version: string
+import { version } from '../package.json'
 
 describe('SimpleBus', () => {
     const consoleError = vi.spyOn(window.console, 'error')
@@ -15,8 +14,8 @@ describe('SimpleBus', () => {
     test('getVersion', () => {
         const bus = new SimpleBus()
 
-        expect(bus.getVersion()).toBe(__pkg_version)
-    })
+		expect(bus.getVersion()).toBe(version)
+	})
 
     test('subscribe and emit', () => {
         const cb = vi.fn()

@@ -16,7 +16,7 @@ describe('ProxyBus', () => {
     test('proxy invalid bus', () => {
         consoleWarn.mockImplementationOnce(() => {})
         const invalidBus = { emit: vi.fn() }
-        // @ts-ignore
+        // @ts-expect-error We want to test the interface for JS so disable type checking here
         const proxy = new ProxyBus(invalidBus as EventBus)
 
         // warn unknown version

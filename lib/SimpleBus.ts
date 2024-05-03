@@ -1,4 +1,4 @@
-import { Event, GenericEvents, NextcloudEvents } from "./Event.js";
+import { GenericEvents, NextcloudEvents } from "./Event.js";
 import { EventBus } from "./EventBus.js";
 import { EventHandler } from "./EventHandler.js";
 
@@ -15,7 +15,7 @@ export class SimpleBus<E extends GenericEvents = NextcloudEvents> implements Eve
     }
 
     unsubscribe<EventName extends keyof E>(name: EventName, handler: EventHandler<E[EventName]>): void {
-        this.handlers.set(name, (this.handlers.get(name) || []).filter(h => h != handler));
+        this.handlers.set(name, (this.handlers.get(name) || []).filter(h => h !== handler));
     }
 
     emit<EventName extends keyof E>(name: EventName, event: E[EventName]): void {

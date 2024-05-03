@@ -42,7 +42,8 @@ test('exports', async () => {
 
     try {
         const simple = new ex.SimpleBus()
-        new ex.ProxyBus(simple)
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const proxy = new ex.ProxyBus(simple)
         expect('No errors').toBe('No errors')
     } catch (e) {
         expect(e).toBe('Unexpected error')

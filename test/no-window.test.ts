@@ -12,7 +12,7 @@ describe('Handle no window', () => {
         vi.restoreAllMocks()
     })
     beforeEach(() => {
-        // @ts-ignore
+        // @ts-expect-error Just for testing make sure there is no window
         global.window = undefined
         consoleError.mockReset()
         consoleWarn.mockReset()
@@ -31,7 +31,7 @@ describe('Handle no window', () => {
     })
 
     test('No bus on window available', async () => {
-        // @ts-ignore
+        // @ts-expect-error Just for testing make sure there is no window
         global.window = { }
 
         const { subscribe, SimpleBus } = await import("../lib")
@@ -46,7 +46,7 @@ describe('Handle no window', () => {
         consoleWarn.mockImplementation(() => {})
 
         const oldBus = { subscribe: vi.fn(), emit: vi.fn() }
-        // @ts-ignore
+        // @ts-expect-error Just for testing make sure there is no window
         global.window = { OC: { _eventBus: oldBus }}
 
         const { emit, subscribe } = await import("../lib")

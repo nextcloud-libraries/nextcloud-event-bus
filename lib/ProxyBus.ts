@@ -1,7 +1,7 @@
 import valid from "semver/functions/valid.js";
 import major from "semver/functions/major.js";
 
-import type { Event, GenericEvents, NextcloudEvents } from "./Event.js";
+import type { GenericEvents, NextcloudEvents } from "./Event.js";
 import { EventBus } from "./EventBus.js";
 import { EventHandler } from "./EventHandler.js";
 

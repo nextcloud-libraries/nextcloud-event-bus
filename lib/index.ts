@@ -13,13 +13,20 @@ export { SimpleBus } from "./SimpleBus";
 
 declare global {
   interface Window {
-    OC: any;
-    _nc_event_bus: any;
+    OC: {
+        _eventBus?: EventBus
+    };
+    _nc_event_bus?: EventBus
   }
 }
 
 let bus: EventBus | null = null
 
+/**
+ * Get the event bus
+ * If a bus was already created by an other app a proxy bus is returned
+ * otherwise a new bus is created and registered globally
+ */
 function getBus(): EventBus {
     if (bus !== null) {
         return bus
@@ -34,7 +41,7 @@ function getBus(): EventBus {
         })
     }
 
-    if (typeof window.OC !== 'undefined' && window.OC._eventBus && typeof window._nc_event_bus === 'undefined') {
+    if (window.OC?._eventBus && typeof window._nc_event_bus === 'undefined') {
         console.warn('found old event bus instance at OC._eventBus. Update your version!')
         window._nc_event_bus = window.OC._eventBus
     }

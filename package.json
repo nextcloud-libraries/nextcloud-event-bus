@@ -19,6 +19,8 @@
     "build": "vite --mode production build",
     "build:doc": "typedoc --out dist/doc lib/index.ts && touch dist/doc/.nojekyll",
     "dev": "vite --mode development build --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest run --watch"
@@ -38,9 +40,11 @@
     "semver": "^7.6.0"
   },
   "devDependencies": {
+    "@nextcloud/eslint-config": "^8.3.0",
     "@nextcloud/vite-config": "^1.2.3",
     "@types/semver": "^7.5.8",
     "@vitest/coverage-v8": "^1.6.0",
+    "eslint": "^8.57.0",
     "happy-dom": "^14.7.1",
     "typedoc": "^0.25.13",
     "typescript": "^5.4.5",
