@@ -88,5 +88,5 @@ npm run test
 
 ### Requirements
 
-- [Node 16 or higher](https://nodejs.org/en/download/)
-- [NPM 8 or higher](https://www.npmjs.com/package/npm)
+- [Node 20 or higher](https://nodejs.org/en/download/)
+- [NPM 10 or higher](https://www.npmjs.com/package/npm)
