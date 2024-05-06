@@ -22,9 +22,9 @@ export type GenericEvents = Record<string | symbol, Event>
  * export {}
  *
  * // your-code.ts
- * import { emit } from '@nextcloud/event-bus'
+ * import { subscribe } from '@nextcloud/event-bus'
  * // Here the type of 'params' is infered automatically
- * emit('my-event', (params) => { console.debug(params.foo, params.bar) })
+ * subscribe('my-event', (params) => { console.debug(params.foo, params.bar) })
  * ```
  */
 export interface NextcloudEvents {
