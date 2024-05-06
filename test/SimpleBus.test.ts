@@ -1,10 +1,10 @@
-import { afterAll, afterEach, describe, expect, jest, test } from '@jest/globals'
+import { afterAll, afterEach, describe, expect, vi, test } from 'vitest'
 import { SimpleBus } from '../lib/SimpleBus'
 
 declare const __pkg_version: string
 
 describe('SimpleBus', () => {
-    const consoleError = jest.spyOn(window.console, 'error')
+    const consoleError = vi.spyOn(window.console, 'error')
 
     afterAll(() => consoleError.mockRestore())
     afterEach(() => {
@@ -19,7 +19,7 @@ describe('SimpleBus', () => {
     })
 
     test('subscribe and emit', () => {
-        const cb = jest.fn()
+        const cb = vi.fn()
         const bus = new SimpleBus()
         bus.subscribe('test', cb)
         bus.emit('test', 'the message')
@@ -30,8 +30,8 @@ describe('SimpleBus', () => {
 
     test('subscribe multiple', () => {
         const message = { text: 'Hello' }
-        const cb = jest.fn()
-        const cb2 = jest.fn()
+        const cb = vi.fn()
+        const cb2 = vi.fn()
         const bus = new SimpleBus()
         bus.subscribe('test', cb)
         bus.subscribe('test', cb2)
@@ -44,7 +44,7 @@ describe('SimpleBus', () => {
     })
 
     test('unsubscribe', () => {
-        const cb = jest.fn()
+        const cb = vi.fn()
         const bus = new SimpleBus()
         bus.subscribe('test', cb)
         bus.unsubscribe('test', cb)
@@ -54,7 +54,7 @@ describe('SimpleBus', () => {
     })
 
     test('unsubscribe w/o subscribed', () => {
-        const cb = jest.fn()
+        const cb = vi.fn()
         const bus = new SimpleBus()
         try {
             bus.unsubscribe('test', cb)
@@ -65,8 +65,8 @@ describe('SimpleBus', () => {
     })
 
     test('unsubscribe partly', () => {
-        const cb = jest.fn()
-        const cb2 = jest.fn()
+        const cb = vi.fn()
+        const cb2 = vi.fn()
         const bus = new SimpleBus()
         bus.subscribe('test', cb)
         bus.subscribe('test', cb2)

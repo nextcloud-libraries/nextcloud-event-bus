@@ -1,8 +1,8 @@
+import { expect, test, vi } from 'vitest'
 import { emit, subscribe, unsubscribe } from '../lib'
-import { expect, jest, test } from '@jest/globals'
 
 test('readme example', () => {
-    const h = jest.fn()
+    const h = vi.fn()
 
     subscribe('a', h)
     subscribe('b', h)
@@ -16,7 +16,7 @@ test('readme example', () => {
 })
 
 test('subscribe and unsubscribe', () => {
-    const h = jest.fn()
+    const h = vi.fn()
 
     subscribe('a', h)
     emit('a', {

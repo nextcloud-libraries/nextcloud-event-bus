@@ -7,7 +7,7 @@ export class SimpleBus<E extends GenericEvents = NextcloudEvents> implements Eve
     private handlers = new Map<keyof E, EventHandler<E[keyof E]>[]>();
 
     getVersion(): string {
-      return globalThis.__pkg_version;
+      return __pkg_version;
     }
 
     subscribe<EventName extends keyof E>(name: EventName, handler: EventHandler<E[EventName]>): void {

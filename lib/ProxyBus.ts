@@ -20,7 +20,7 @@ export class ProxyBus<E extends GenericEvents = NextcloudEvents> implements Even
     }
 
     getVersion(): string {
-        return globalThis.__pkg_version;
+        return __pkg_version;
     }
 
     subscribe<EventName extends keyof E>(name: EventName, handler: EventHandler<E[EventName]>): void {
