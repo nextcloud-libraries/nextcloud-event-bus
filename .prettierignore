@@ -1,0 +1,11 @@
+# version control systems directories
+**/.git
+
+# 3rdparty dependencies
+**/node_modules
+
+# Compiled JS output
+dist/
+
+# other misc stuff
+coverage/
