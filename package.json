@@ -39,7 +39,7 @@
   },
   "prettier": "@nextcloud/prettier-config",
   "dependencies": {
-    "@types/node": "^20.12.10",
+    "@types/node": "^20.12.11",
     "semver": "^7.6.2"
   },
   "devDependencies": {
