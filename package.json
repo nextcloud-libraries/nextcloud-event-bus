@@ -1,6 +1,6 @@
 {
   "name": "@nextcloud/event-bus",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "A simple event bus to communicate between Nextcloud components.",
   "keywords": [
     "nextcloud"

@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.3.0](https://github.com/nextcloud-libraries/nextcloud-event-bus/tree/v3.3.0) \(2024-05-07\)
+
+### Added
+
+-   feat: Allow to fully type events by extending the `NextcloudEvents` interface [\#755](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/755) \([susnux](https://github.com/susnux)\)
+
+### Fixed
+
+-   fix(readme): update engine requirements according to package.json [\#754](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/754) \([AaronActu](https://github.com/AaronActu)\)
+-   fix(docs): Adjust invalid example for typed events [\#763](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/763) ([susnux](https://github.com/susnux)\)
+
+### Changed
+
+-   feat: Add ESLint for linting and prettier for formatting [\#759](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/759) ([susnux](https://github.com/susnux)\)
+-   feat: Migrate to vite for building and vitest for testing [\#758](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/758) ([susnux](https://github.com/susnux)\)
+
 ## [v3.2.0](https://github.com/nextcloud/nextcloud-event-bus/tree/v3.2.0) (2024-04-21)
 
 ### Changed
