@@ -11,15 +11,6 @@ export type { Event, NextcloudEvents } from './Event'
 export { ProxyBus } from './ProxyBus'
 export { SimpleBus } from './SimpleBus'
 
-declare global {
-	interface Window {
-		OC: {
-			_eventBus?: EventBus
-		}
-		_nc_event_bus?: EventBus
-	}
-}
-
 let bus: EventBus | null = null
 
 /**
