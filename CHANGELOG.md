@@ -7,6 +7,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.3.1](https://github.com/nextcloud-libraries/nextcloud-event-bus/tree/v3.3.1) \(2024-05-28\)
+
+### Fixed
+
+-   fix: Do not include declarations for private globals in distribution [\#772](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/772) ([susnux](https://github.com/susnux)\)
+
+### Changed
+
+-   chore: Add license information to files and add REUSE workflow [\#773](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/773) ([susnux](https://github.com/susnux)\)
+
 ## [v3.3.0](https://github.com/nextcloud-libraries/nextcloud-event-bus/tree/v3.3.0) \(2024-05-07\)
 
 ### Added
