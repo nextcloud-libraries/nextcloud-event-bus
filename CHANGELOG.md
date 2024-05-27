@@ -1,5 +1,10 @@
 # Changelog
 
+<!--
+ - SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+ - SPDX-License-Identifier: CC0-1.0
+-->
+
 All notable changes to this project will be documented in this file.
 
 ## [v3.3.0](https://github.com/nextcloud-libraries/nextcloud-event-bus/tree/v3.3.0) \(2024-05-07\)

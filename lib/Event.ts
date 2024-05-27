@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 export type Event = object | number | string | boolean | null | undefined
 
 /**
