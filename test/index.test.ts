@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: CC0-1.0
+ */
+
 import { expect, test, vi } from 'vitest'
 import { emit, subscribe, unsubscribe } from '../lib'
 

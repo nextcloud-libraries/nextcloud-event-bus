@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: CC0-1.0
+ */
+
 import { afterAll, afterEach, describe, expect, vi, test } from 'vitest'
 import { SimpleBus } from '../lib/SimpleBus'
 import { version } from '../package.json'
