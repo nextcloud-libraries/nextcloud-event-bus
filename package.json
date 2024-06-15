@@ -45,7 +45,7 @@
   "devDependencies": {
     "@nextcloud/eslint-config": "^8.4.1",
     "@nextcloud/prettier-config": "^1.1.0",
-    "@nextcloud/vite-config": "^2.0.0",
+    "@nextcloud/vite-config": "^2.0.2",
     "@types/semver": "^7.5.8",
     "@vitest/coverage-v8": "^1.6.0",
     "eslint": "^8.57.0",
