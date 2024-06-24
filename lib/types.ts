@@ -2,8 +2,8 @@
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import type { Event } from './Event'
 
-export interface EventHandler<T extends Event> {
-	(event: T): void
-}
+/**
+ * Helper to check if a type is undefined
+ */
+export type IsUndefined<T> = [T] extends [undefined] ? true : false
