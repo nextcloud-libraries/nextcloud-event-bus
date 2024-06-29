@@ -7,8 +7,9 @@ import valid from 'semver/functions/valid.js'
 import major from 'semver/functions/major.js'
 
 import type { GenericEvents, NextcloudEvents } from './Event.js'
-import { EventBus } from './EventBus.js'
-import { EventHandler } from './EventHandler.js'
+import type { EventBus } from './EventBus.js'
+import type { EventHandler } from './EventHandler.js'
+import type { IsUndefined } from './types.ts'
 
 export class ProxyBus<E extends GenericEvents = NextcloudEvents>
 	implements EventBus<E>
@@ -48,7 +49,10 @@ export class ProxyBus<E extends GenericEvents = NextcloudEvents>
 		this.bus.unsubscribe(name, handler)
 	}
 
-	emit<EventName extends keyof E>(name: EventName, event: E[EventName]): void {
-		this.bus.emit(name, event)
+	emit<EventName extends keyof E>(
+		name: EventName,
+		...event: IsUndefined<E[EventName]> extends true ? [] : [E[EventName]]
+	): void {
+		this.bus.emit(name, ...event)
 	}
 }

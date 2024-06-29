@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 import type { GenericEvents, NextcloudEvents } from './Event'
+import type { IsUndefined } from './types.ts'
 import { EventHandler } from './EventHandler'
 
 export interface EventBus<E extends GenericEvents = NextcloudEvents> {
@@ -37,5 +38,8 @@ export interface EventBus<E extends GenericEvents = NextcloudEvents> {
 	 * @param name Name of the event to emit
 	 * @param event Event payload to emit
 	 */
-	emit<EventName extends keyof E>(name: EventName, event: E[EventName]): void
+	emit<EventName extends keyof E>(
+		name: EventName,
+		...event: IsUndefined<E[EventName]> extends true ? [] : [E[EventName]]
+	): void
 }

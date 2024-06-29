@@ -2,9 +2,11 @@
  * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { EventBus } from './EventBus'
-import { EventHandler } from './EventHandler'
-import { NextcloudEvents } from './Event'
+import type { EventBus } from './EventBus'
+import type { EventHandler } from './EventHandler'
+import type { NextcloudEvents } from './Event'
+import type { IsUndefined } from './types.ts'
+
 import { ProxyBus } from './ProxyBus'
 import { SimpleBus } from './SimpleBus'
 
@@ -91,7 +93,9 @@ export function unsubscribe<K extends keyof NextcloudEvents>(
  */
 export function emit<K extends keyof NextcloudEvents>(
 	name: K,
-	event: NextcloudEvents[K],
+	...event: IsUndefined<NextcloudEvents[K]> extends true
+		? []
+		: [NextcloudEvents[K]]
 ): void {
-	getBus().emit(name, event)
+	getBus().emit(name, ...event)
 }
