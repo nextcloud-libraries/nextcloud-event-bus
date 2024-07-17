@@ -2,9 +2,10 @@
  * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { GenericEvents, NextcloudEvents } from './Event.js'
-import { EventBus } from './EventBus.js'
-import { EventHandler } from './EventHandler.js'
+import type { GenericEvents, NextcloudEvents } from './Event.js'
+import type { EventBus } from './EventBus.js'
+import type { EventHandler } from './EventHandler.js'
+import type { IsUndefined } from './types.ts'
 
 export class SimpleBus<E extends GenericEvents = NextcloudEvents>
 	implements EventBus<E>
@@ -37,10 +38,14 @@ export class SimpleBus<E extends GenericEvents = NextcloudEvents>
 		)
 	}
 
-	emit<EventName extends keyof E>(name: EventName, event: E[EventName]): void {
-		;(this.handlers.get(name) || []).forEach((h) => {
+	emit<EventName extends keyof E>(
+		name: EventName,
+		...event: IsUndefined<E[EventName]> extends true ? [] : [E[EventName]]
+	): void {
+		const handlers = this.handlers.get(name) || []
+		handlers.forEach((h) => {
 			try {
-				h(event)
+				;(h as EventHandler<(typeof event)[0]>)(event[0])
 			} catch (e) {
 				console.error('could not invoke event listener', e)
 			}
