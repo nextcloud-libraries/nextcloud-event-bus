@@ -48,7 +48,7 @@
     "@nextcloud/vite-config": "^2.2.2",
     "@types/semver": "^7.5.8",
     "@vitest/coverage-v8": "^2.1.1",
-    "eslint": "^8.57.0",
+    "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "happy-dom": "^14.12.3",
     "prettier": "^3.3.3",
