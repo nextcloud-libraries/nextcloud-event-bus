@@ -28,7 +28,7 @@ export type GenericEvents = Record<string | symbol, Event>
  *
  * // your-code.ts
  * import { subscribe } from '@nextcloud/event-bus'
- * // Here the type of 'params' is infered automatically
+ * // Here the type of 'params' is inferred automatically
  * subscribe('my-event', (params) => { console.debug(params.foo, params.bar) })
  * ```
  */

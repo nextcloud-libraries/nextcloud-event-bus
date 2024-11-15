@@ -16,7 +16,7 @@ export interface EventBus<E extends GenericEvents = NextcloudEvents> {
 	/**
 	 * Subscribe the event bus
 	 * @param name Name of the event to subscribe
-	 * @param handler Handler ivoken when receiving the event
+	 * @param handler Handler invoked when receiving the event
 	 */
 	subscribe<EventName extends keyof E>(
 		name: EventName,
