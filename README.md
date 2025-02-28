@@ -75,13 +75,13 @@ To stay consistent, we encourage you to use the following syntax when declaring 
 
 ### Examples:
 
--   `nextcloud:unified-search:closed`
--   `files:node:uploading`
--   `files:node:uploaded`
--   `files:node:deleted`
--   `contacts:contact:deleted`
--   `calendar:event:created`
--   `forms:answer:updated`
+- `nextcloud:unified-search:closed`
+- `files:node:uploading`
+- `files:node:uploaded`
+- `files:node:deleted`
+- `contacts:contact:deleted`
+- `calendar:event:created`
+- `forms:answer:updated`
 
 ## Development
 
@@ -94,5 +94,5 @@ npm run test
 
 ### Requirements
 
--   [Node 20 or higher](https://nodejs.org/en/download/)
--   [NPM 10 or higher](https://www.npmjs.com/package/npm)
+- [Node 20 or higher](https://nodejs.org/en/download/)
+- [NPM 10 or higher](https://www.npmjs.com/package/npm)
