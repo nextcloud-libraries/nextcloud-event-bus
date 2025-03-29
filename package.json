@@ -54,7 +54,7 @@
     "prettier": "^3.5.3",
     "typedoc": "^0.28.1",
     "typescript": "^5.8.2",
-    "vite": "^6.2.2",
+    "vite": "^6.2.3",
     "vitest": "^3.0.7"
   },
   "engines": {
