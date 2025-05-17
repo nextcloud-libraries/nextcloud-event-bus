@@ -40,7 +40,7 @@
   "prettier": "@nextcloud/prettier-config",
   "dependencies": {
     "@types/semver": "^7.7.0",
-    "semver": "^7.7.1"
+    "semver": "^7.7.2"
   },
   "devDependencies": {
     "@nextcloud/eslint-config": "^8.4.2",
