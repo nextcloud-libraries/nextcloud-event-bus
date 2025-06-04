@@ -1,7 +1,8 @@
-/**
+/*!
  * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
+
 import type { GenericEvents, NextcloudEvents } from './Event.js'
 import type { EventBus } from './EventBus.js'
 import type { EventHandler } from './EventHandler.js'

@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: CC0-1.0
  */
 
-import { afterAll, afterEach, describe, expect, vi, test } from 'vitest'
-import { SimpleBus } from '../lib/SimpleBus'
+import { afterAll, afterEach, describe, expect, test, vi } from 'vitest'
+import { SimpleBus } from '../lib/SimpleBus.ts'
 import { version } from '../package.json'
 
 describe('SimpleBus', () => {

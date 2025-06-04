@@ -1,10 +1,14 @@
 /**
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: CC0-1.0
+ *
  * @vitest-environment node
  */
 
-import { afterAll, beforeEach, describe, expect, vi, test } from 'vitest'
+import { afterAll, beforeEach, describe, expect, test, vi } from 'vitest'
+
+// just for the types
+import '../lib/globals.d.ts'
 
 describe('Handle no window', () => {
 	const consoleError = vi.spyOn(console, 'error')
@@ -15,7 +19,7 @@ describe('Handle no window', () => {
 	})
 	beforeEach(() => {
 		// @ts-expect-error Just for testing make sure there is no window
-		global.window = undefined
+		globalThis.window = undefined
 		consoleError.mockReset()
 		consoleWarn.mockReset()
 
@@ -24,7 +28,7 @@ describe('Handle no window', () => {
 	})
 
 	test('No window available', async () => {
-		const { subscribe } = await import('../lib')
+		const { subscribe } = await import('../lib/index.ts')
 
 		const cb = vi.fn()
 		subscribe('test', cb)
@@ -34,14 +38,14 @@ describe('Handle no window', () => {
 
 	test('No bus on window available', async () => {
 		// @ts-expect-error Just for testing make sure there is no window
-		global.window = {}
+		globalThis.window = {}
 
-		const { subscribe, SimpleBus } = await import('../lib')
+		const { subscribe, SimpleBus } = await import('../lib/index.ts')
 
 		const cb = vi.fn()
 		subscribe('test', cb)
 		// new bus is created
-		expect(global.window?._nc_event_bus instanceof SimpleBus).toBe(true)
+		expect(globalThis.window?._nc_event_bus instanceof SimpleBus).toBe(true)
 	})
 
 	test('Old OC eventbus', async () => {
@@ -49,9 +53,9 @@ describe('Handle no window', () => {
 
 		const oldBus = { subscribe: vi.fn(), emit: vi.fn() }
 		// @ts-expect-error Just for testing make sure there is no window
-		global.window = { OC: { _eventBus: oldBus } }
+		globalThis.window = { OC: { _eventBus: oldBus } }
 
-		const { emit, subscribe } = await import('../lib')
+		const { emit, subscribe } = await import('../lib/index.ts')
 
 		subscribe('test', vi.fn())
 		expect(consoleWarn).toHaveBeenCalled()
@@ -59,7 +63,7 @@ describe('Handle no window', () => {
 			/old event bus instance at OC\._eventBus/,
 		)
 		// old bus set to new bus variable
-		expect(global.window?._nc_event_bus).toBe(oldBus)
+		expect(globalThis.window?._nc_event_bus).toBe(oldBus)
 		// subscribed to old bus
 		expect(oldBus.subscribe).toBeCalledTimes(1)
 
