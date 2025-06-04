@@ -1,15 +1,15 @@
-/**
+/*!
  * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-
-import valid from 'semver/functions/valid.js'
-import major from 'semver/functions/major.js'
 
 import type { GenericEvents, NextcloudEvents } from './Event.js'
 import type { EventBus } from './EventBus.js'
 import type { EventHandler } from './EventHandler.js'
 import type { IsUndefined } from './types.ts'
+
+import major from 'semver/functions/major.js'
+import valid from 'semver/functions/valid.js'
 
 export class ProxyBus<E extends GenericEvents = NextcloudEvents>
 	implements EventBus<E>

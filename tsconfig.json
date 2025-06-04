@@ -1,14 +1,16 @@
 {
-	"include": ["./lib/**/*.ts"],
+	"include": ["lib"],
 	"compilerOptions": {
+		"allowImportingTsExtensions": true,
 		"allowSyntheticDefaultImports": true,
+		"declaration": true,
+		"emitDeclarationOnly": true,
 		"esModuleInterop": true,
-		"moduleResolution": "Bundler",
+		"moduleResolution": "bundler",
 		"target": "ESNext",
 		"module": "ESNext",
-		"declaration": true,
-		"strict": true,
 		"outDir": "./dist",
-		"resolveJsonModule": true
+		"resolveJsonModule": true,
+		"strict": true
 	}
 }

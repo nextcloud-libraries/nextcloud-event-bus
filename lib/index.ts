@@ -1,21 +1,22 @@
-/**
+/*!
  * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import type { EventBus } from './EventBus'
-import type { EventHandler } from './EventHandler'
-import type { NextcloudEvents } from './Event'
+
+import type { NextcloudEvents } from './Event.ts'
+import type { EventBus } from './EventBus.ts'
+import type { EventHandler } from './EventHandler.ts'
 import type { IsUndefined } from './types.ts'
 
-import { ProxyBus } from './ProxyBus'
-import { SimpleBus } from './SimpleBus'
+import { ProxyBus } from './ProxyBus.ts'
+import { SimpleBus } from './SimpleBus.ts'
 
-export type { EventBus } from './EventBus'
-export type { EventHandler } from './EventHandler'
-export type { Event, NextcloudEvents } from './Event'
+export type { EventBus } from './EventBus.ts'
+export type { EventHandler } from './EventHandler.ts'
+export type { Event, NextcloudEvents } from './Event.ts'
 
-export { ProxyBus } from './ProxyBus'
-export { SimpleBus } from './SimpleBus'
+export { ProxyBus } from './ProxyBus.ts'
+export { SimpleBus } from './SimpleBus.ts'
 
 let bus: EventBus | null = null
 

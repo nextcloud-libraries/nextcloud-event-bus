@@ -4,7 +4,7 @@
  */
 
 import { expect, test, vi } from 'vitest'
-import { emit, subscribe, unsubscribe } from '../lib'
+import { emit, subscribe, unsubscribe } from '../lib/index.ts'
 
 test('readme example', () => {
 	const h = vi.fn()

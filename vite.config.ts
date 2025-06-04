@@ -1,7 +1,8 @@
-/**
+/*!
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: CC0-1.0
  */
+
 import { createLibConfig } from '@nextcloud/vite-config'
 import { version } from './package.json'
 

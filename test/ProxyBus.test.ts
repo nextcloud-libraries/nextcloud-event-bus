@@ -3,11 +3,11 @@
  * SPDX-License-Identifier: CC0-1.0
  */
 
-import type { EventBus } from '../lib/EventBus'
+import type { EventBus } from '../lib/EventBus.ts'
 
-import { afterAll, afterEach, describe, expect, vi, test } from 'vitest'
-import { ProxyBus } from '../lib/ProxyBus'
-import { SimpleBus } from '../lib/SimpleBus'
+import { afterAll, afterEach, describe, expect, test, vi } from 'vitest'
+import { ProxyBus } from '../lib/ProxyBus.ts'
+import { SimpleBus } from '../lib/SimpleBus.ts'
 
 describe('ProxyBus', () => {
 	const consoleWarn = vi.spyOn(window.console, 'warn')
