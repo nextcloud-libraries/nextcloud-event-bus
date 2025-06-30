@@ -28,14 +28,15 @@
   "scripts": {
     "build": "vite --mode production build",
     "build:doc": "typedoc --out dist/doc lib/index.ts && touch dist/doc/.nojekyll",
-    "dev": "vite --mode development build --watch",
+    "dev": "vite --mode development build",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest run --watch"
+    "test:watch": "vitest run --watch",
+    "watch": "npm run dev -- --watch"
   },
   "prettier": "@nextcloud/prettier-config",
   "dependencies": {
