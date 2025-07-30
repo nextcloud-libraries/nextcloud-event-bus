@@ -10,6 +10,7 @@ import type { IsUndefined } from './types.ts'
 
 import { ProxyBus } from './ProxyBus.ts'
 import { SimpleBus } from './SimpleBus.ts'
+import { major, minor } from 'semver'
 
 export type { EventBus } from './EventBus.ts'
 export type { EventHandler } from './EventHandler.ts'
@@ -51,10 +52,19 @@ function getBus(): EventBus {
 
 	// Either use an existing event bus instance or create one
 	if (typeof window?._nc_event_bus !== 'undefined') {
+		if (minor(__pkg_version) > minor(window._nc_event_bus.getVersion())
+			&& major(__pkg_version) === major(window._nc_event_bus.getVersion())) {
+			// If the existing bus is older than this version, but has the same major version,
+			// we create a new bus instance with the most recent version.
+			bus = window._nc_event_bus = new SimpleBus()
+			console.warn('Using a new event bus instance, because the existing one is slightly older than this version.')
+			return bus
+		}
 		bus = new ProxyBus(window._nc_event_bus)
-	} else {
-		bus = window._nc_event_bus = new SimpleBus()
+		return bus
 	}
+	
+	bus = window._nc_event_bus = new SimpleBus()
 	return bus
 }
 
@@ -63,12 +73,14 @@ function getBus(): EventBus {
  *
  * @param name name of the event
  * @param handler callback invoked for every matching event emitted on the bus
+ * @param global if true, the event will be listened to globally (e.g. in other tabs)
  */
 export function subscribe<K extends keyof NextcloudEvents>(
 	name: K,
 	handler: EventHandler<NextcloudEvents[K]>,
+	global: boolean = false,
 ): void {
-	getBus().subscribe(name, handler)
+	getBus().subscribe(name, handler, global)
 }
 
 /**

@@ -38,8 +38,9 @@ export class ProxyBus<E extends GenericEvents = NextcloudEvents>
 	subscribe<EventName extends keyof E>(
 		name: EventName,
 		handler: EventHandler<E[EventName]>,
+		global: boolean = false,
 	): void {
-		this.bus.subscribe(name, handler)
+		this.bus.subscribe(name, handler, global)
 	}
 
 	unsubscribe<EventName extends keyof E>(

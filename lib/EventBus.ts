@@ -23,6 +23,7 @@ export interface EventBus<E extends GenericEvents = NextcloudEvents> {
 	subscribe<EventName extends keyof E>(
 		name: EventName,
 		handler: EventHandler<E[EventName]>,
+		global: boolean,
 	): void
 
 	/**
