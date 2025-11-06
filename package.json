@@ -64,13 +64,13 @@
   "devEngines": {
     "packageManager": {
       "name": "npm",
-      "onFail": "warn",
-      "version": "^10.0.0"
+      "onFail": "error",
+      "version": "^11.5.0"
     },
     "runtime": {
       "name": "node",
-      "onFail": "warn",
-      "version": "^22.0.0"
+      "onFail": "error",
+      "version": "^24.0.0"
     }
   }
 }
