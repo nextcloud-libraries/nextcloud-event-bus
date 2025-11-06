@@ -21,10 +21,10 @@ export class ProxyBus<E extends GenericEvents = NextcloudEvents>
 			console.warn('Proxying an event bus with an unknown or invalid version')
 		} else if (major(bus.getVersion()) !== major(this.getVersion())) {
 			console.warn(
-				'Proxying an event bus of version ' +
-					bus.getVersion() +
-					' with ' +
-					this.getVersion(),
+				'Proxying an event bus of version '
+					+ bus.getVersion()
+					+ ' with '
+					+ this.getVersion(),
 			)
 		}
 
