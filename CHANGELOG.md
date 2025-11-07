@@ -7,6 +7,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.3.3](https://github.com/nextcloud-libraries/nextcloud-event-bus/tree/v3.3.3) \(2025-11-07\)
+
+### Changed
+
+- build: use consistent script names for npm ([#995](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/995))
+- chore: update node version to include LTS and active ([#994](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/994))
+- chore: align `devEngines` with apps Node version ([#1012](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/1012))
+- chore(deps): Bump `@types/semver` to 7.7.0 ([#954](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/954))
+- chore(deps): Bump `semver` to 7.7.2 ([#986](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/986))
+- ci: update reuse.yml workflow from template ([#1009](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/1009))
+- ci: update npm-publish.yml workflow from template ([#1010](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/1010))
+- ci: update workflows from organization ([#1011](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/1011))
+- refactor: adjust code to already comply with upcoming ESLint v9 ([#996](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/996))
+
 ## [v3.3.2](https://github.com/nextcloud-libraries/nextcloud-event-bus/tree/v3.3.2) \(2025-02-28\)
 
 ### Fixed
