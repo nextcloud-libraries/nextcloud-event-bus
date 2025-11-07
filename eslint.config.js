@@ -15,4 +15,12 @@ export default defineConfig([
 	},
 
 	...recommendedLibrary,
+
+	{
+		files: ['lib/**/*.ts'],
+		rules: {
+			// requires the logger to work in no-window environments
+			'no-console': 'off',
+		},
+	},
 ])
