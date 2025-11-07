@@ -8,6 +8,8 @@ import type { EventBus } from './EventBus.js'
 import type { EventHandler } from './EventHandler.js'
 import type { IsUndefined } from './types.ts'
 
+import { logger } from './logger.ts'
+
 export class SimpleBus<E extends GenericEvents = NextcloudEvents>
 implements EventBus<E> {
 	private handlers = new Map<keyof E, EventHandler<E[keyof E]>[]>()
@@ -44,8 +46,8 @@ implements EventBus<E> {
 		handlers.forEach((h) => {
 			try {
 				(h as EventHandler<(typeof event)[0]>)(event[0])
-			} catch (e) {
-				console.error('could not invoke event listener', e)
+			} catch (error) {
+				logger.error('SimpleBus: Could not invoke event listener', { error })
 			}
 		})
 	}

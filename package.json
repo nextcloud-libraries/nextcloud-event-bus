@@ -37,6 +37,7 @@
     "watch": "npm run dev -- --watch"
   },
   "dependencies": {
+    "@nextcloud/logger": "^2.2.1",
     "@types/semver": "^7.7.0",
     "semver": "^7.7.2"
   },
