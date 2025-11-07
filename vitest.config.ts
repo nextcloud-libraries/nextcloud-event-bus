@@ -11,10 +11,7 @@ import viteConfig from './vite.config.ts'
 export default async (env: Parameters<typeof viteConfig>[0]) => {
 	const config = await viteConfig(env)
 	// node-externals conflicts with vitest
-	config.plugins = config.plugins!.filter(
-		(plugin) =>
-			plugin && (!('name' in plugin) || plugin?.name !== 'node-externals'),
-	)
+	config.plugins = config.plugins!.filter((plugin) => plugin && (!('name' in plugin) || plugin?.name !== 'node-externals'))
 
 	return {
 		...config,

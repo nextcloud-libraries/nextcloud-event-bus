@@ -34,18 +34,13 @@ function getBus(): EventBus {
 		// testing or SSR
 		return new Proxy({} as EventBus, {
 			get: () => {
-				return () =>
-					console.error(
-						'Window not available, EventBus can not be established!',
-					)
+				return () => console.error('Window not available, EventBus can not be established!')
 			},
 		})
 	}
 
 	if (window.OC?._eventBus && typeof window._nc_event_bus === 'undefined') {
-		console.warn(
-			'found old event bus instance at OC._eventBus. Update your version!',
-		)
+		console.warn('found old event bus instance at OC._eventBus. Update your version!')
 		window._nc_event_bus = window.OC._eventBus
 	}
 

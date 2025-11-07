@@ -59,9 +59,7 @@ describe('Handle no window', () => {
 
 		subscribe('test', vi.fn())
 		expect(consoleWarn).toHaveBeenCalled()
-		expect(consoleWarn.mock.calls[0][0]).toMatch(
-			/old event bus instance at OC\._eventBus/,
-		)
+		expect(consoleWarn.mock.calls[0][0]).toMatch(/old event bus instance at OC\._eventBus/)
 		// old bus set to new bus variable
 		expect(globalThis.window?._nc_event_bus).toBe(oldBus)
 		// subscribed to old bus
