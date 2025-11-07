@@ -36,16 +36,14 @@ test('subscribe and unsubscribe', () => {
 })
 
 test('exports', async () => {
-	const ex = await import('../lib/index')
+	const ex = await import('../lib/index.ts')
 
-	expect(Object.keys(ex)).toEqual(
-		expect.arrayContaining([
-			'subscribe',
-			'unsubscribe',
-			'SimpleBus',
-			'ProxyBus',
-		]),
-	)
+	expect(Object.keys(ex)).toEqual(expect.arrayContaining([
+		'subscribe',
+		'unsubscribe',
+		'SimpleBus',
+		'ProxyBus',
+	]))
 
 	try {
 		const simple = new ex.SimpleBus()

@@ -6,8 +6,7 @@
 import type { EventBus } from './EventBus.ts'
 
 declare global {
-	// eslint-disable-next-line camelcase
-	const __pkg_version: string
+	const PACKAGE_VERSION: string
 
 	interface Window {
 		OC: {

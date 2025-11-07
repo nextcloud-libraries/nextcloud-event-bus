@@ -9,12 +9,11 @@ import type { EventHandler } from './EventHandler.js'
 import type { IsUndefined } from './types.ts'
 
 export class SimpleBus<E extends GenericEvents = NextcloudEvents>
-	implements EventBus<E>
-{
+implements EventBus<E> {
 	private handlers = new Map<keyof E, EventHandler<E[keyof E]>[]>()
 
 	getVersion(): string {
-		return __pkg_version
+		return PACKAGE_VERSION
 	}
 
 	subscribe<EventName extends keyof E>(
@@ -23,9 +22,7 @@ export class SimpleBus<E extends GenericEvents = NextcloudEvents>
 	): void {
 		this.handlers.set(
 			name,
-			(this.handlers.get(name) || []).concat(
-				handler as EventHandler<E[keyof E]>,
-			),
+			(this.handlers.get(name) || []).concat(handler as EventHandler<E[keyof E]>),
 		)
 	}
 
@@ -46,7 +43,7 @@ export class SimpleBus<E extends GenericEvents = NextcloudEvents>
 		const handlers = this.handlers.get(name) || []
 		handlers.forEach((h) => {
 			try {
-				;(h as EventHandler<(typeof event)[0]>)(event[0])
+				(h as EventHandler<(typeof event)[0]>)(event[0])
 			} catch (e) {
 				console.error('could not invoke event listener', e)
 			}
