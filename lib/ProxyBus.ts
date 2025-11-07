@@ -29,7 +29,7 @@ implements EventBus<E> {
 	}
 
 	getVersion(): string {
-		return __pkg_version
+		return PACKAGE_VERSION
 	}
 
 	subscribe<EventName extends keyof E>(

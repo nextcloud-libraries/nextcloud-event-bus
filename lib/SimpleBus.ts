@@ -13,7 +13,7 @@ implements EventBus<E> {
 	private handlers = new Map<keyof E, EventHandler<E[keyof E]>[]>()
 
 	getVersion(): string {
-		return __pkg_version
+		return PACKAGE_VERSION
 	}
 
 	subscribe<EventName extends keyof E>(

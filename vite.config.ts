@@ -13,7 +13,7 @@ export default createLibConfig(
 	{
 		libraryFormats: ['cjs', 'es'],
 		replace: {
-			__pkg_version: JSON.stringify(version),
+			PACKAGE_VERSION: JSON.stringify(version),
 		},
 	},
 )
