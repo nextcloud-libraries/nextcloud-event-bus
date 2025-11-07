@@ -102,7 +102,7 @@ describe('SimpleBus', () => {
 		bus.emit('test', 'the message')
 
 		expect(consoleError).toBeCalledTimes(1)
-		expect(consoleError.mock.calls[0]?.[0]).toMatch(/could not invoke event listener/)
-		expect(consoleError.mock.calls[0]?.[1]).toBe(error)
+		expect(consoleError.mock.calls[0]?.[0]).toMatchInlineSnapshot('"SimpleBus: Could not invoke event listener"')
+		expect(consoleError.mock.calls[0]?.[1]).toEqual({ error })
 	})
 })
