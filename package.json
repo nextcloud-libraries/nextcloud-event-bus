@@ -37,8 +37,8 @@
     "watch": "npm run dev -- --watch"
   },
   "dependencies": {
-    "@types/semver": "^7.7.0",
-    "semver": "^7.7.2"
+    "@types/semver": "^7.7.1",
+    "semver": "^7.7.3"
   },
   "devDependencies": {
     "@nextcloud/eslint-config": "^9.0.0-rc.5",
