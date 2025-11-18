@@ -3,12 +3,21 @@
 
 version: 2
 updates:
-  - package-ecosystem: npm
-    directory: '/'
-    schedule:
-      interval: weekly
-      day: saturday
-      time: '03:00'
-      timezone: Europe/Paris
-    versioning-strategy: increase
-    open-pull-requests-limit: 10
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+    day: saturday
+    time: "03:00"
+    timezone: Europe/Paris
+  open-pull-requests-limit: 10
+  versioning-strategy: increase
+  groups:
+    vite:
+      patterns:
+        - "vite"
+        - "@nextcloud/vite-config"
+    vitest:
+      patterns:
+        - "vitest"
+        - "@vitest/*"
