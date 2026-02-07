@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@types/semver": "^7.7.1",
-    "semver": "^7.7.3"
+    "semver": "^7.7.4"
   },
   "devDependencies": {
     "@nextcloud/eslint-config": "^9.0.0-rc.8",
