@@ -45,7 +45,7 @@
     "@nextcloud/vite-config": "^2.5.2",
     "@types/node": "^25.1.0",
     "@vitest/coverage-v8": "^4.0.18",
-    "eslint": "^9.39.1",
+    "eslint": "^10.0.0",
     "happy-dom": "^20.6.1",
     "typedoc": "^0.28.17",
     "typescript": "^5.9.3",
