@@ -44,13 +44,13 @@
     "@nextcloud/eslint-config": "^9.0.1",
     "@nextcloud/vite-config": "^2.5.4",
     "@types/node": "^26.6.2",
-    "@vitest/coverage-v8": "^4.1.11",
+    "@vitest/coverage-v8": "^5.0.1",
     "eslint": "^10.11.0",
     "happy-dom": "^20.14.5",
     "typedoc": "^0.28.20",
     "typescript": "^6.0.3",
     "vite": "^7.3.5",
-    "vitest": "^4.0.10"
+    "vitest": "^5.0.1"
   },
   "engines": {
     "node": "^20 || ^22 || ^24"
