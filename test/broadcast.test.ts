@@ -40,25 +40,6 @@ function settle() {
 	return new Promise((resolve) => setTimeout(resolve, 50))
 }
 
-/**
- * A class instance that cannot be structured-cloned, like `@nextcloud/files` nodes
- */
-class Item {
-	attributes: Record<string, unknown>
-
-	constructor(public id: number, attributes: Record<string, unknown>) {
-		this.attributes = new Proxy(attributes, {})
-	}
-
-	toJSON(): string {
-		return JSON.stringify([this.id, { ...this.attributes }])
-	}
-
-	static fromJSON(json: string): Item {
-		return new Item(...(JSON.parse(json) as [number, Record<string, unknown>]))
-	}
-}
-
 beforeEach(() => {
 	document.head.setAttribute('data-user', 'alice')
 	window._oc_webroot = '/nextcloud'
@@ -173,22 +154,18 @@ test('a payload that cannot be cloned is not sent', async () => {
 	const received = listen()
 	const error = vi.spyOn(console, 'error').mockImplementation(() => {})
 
-	broadcast('files:node:updated', new Item(42, { favorite: 1 }))
+	broadcast('files:node:updated', { callback: () => {} })
 	await settle()
 
 	expect(received).toEqual([])
 	expect(error).toHaveBeenCalledWith(expect.stringContaining('toJSON()'), expect.anything())
 })
 
-test('a payload serialized with toJSON() can be rebuilt in the other tab', async () => {
+test('a string payload reaches the other tabs as is', async () => {
 	const { broadcast } = await loadPackage()
-	const received: string[] = []
-	otherTab.addEventListener('message', ({ data }) => received.push(data.event))
+	const received = listen()
 
-	broadcast('files:node:updated', new Item(42, { favorite: 1, tags: ['a'] }).toJSON())
+	broadcast('foo', 'bar')
 
-	await vi.waitFor(() => expect(received).toHaveLength(1))
-	const item = Item.fromJSON(received[0]!)
-	expect(item.id).toBe(42)
-	expect({ ...item.attributes }).toEqual({ favorite: 1, tags: ['a'] })
+	await vi.waitFor(() => expect(received).toEqual([{ version: 1, name: 'foo', event: 'bar' }]))
 })
