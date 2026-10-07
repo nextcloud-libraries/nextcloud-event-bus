@@ -39,6 +39,20 @@ unsubscribe('a', h)
 unsubscribe('b', h)
 ```
 
+### Other tabs
+
+`emit` only reaches the current browser tab. `broadcast` sends the event to the other tabs of the same Nextcloud instance through a [`BroadcastChannel`](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API). Like `BroadcastChannel`, the current tab does not receive it: also call `emit` if it should. Public pages do not broadcast.
+
+```js
+import { broadcast, emit } from '@nextcloud/event-bus'
+
+emit('my-app:item:updated', { id: 42 })
+broadcast('my-app:item:updated', { id: 42 })
+```
+
+- The payload is copied with the [structured clone algorithm](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm): other tabs receive plain data, class instances lose their prototype. A payload that cannot be cloned is not sent. `@nextcloud/files` nodes are in that case: broadcast `node.toJSON()` and rebuild the node in the subscribers.
+- Every open tab receives the event, so broadcast the result of something the user did in this tab, not something each tab computes on its own.
+
 ### Typed events
 
 It is also possible to type events, which allows type infering on the event-bus methods like `emit`, `subscribe` and `unsubscribe`.
