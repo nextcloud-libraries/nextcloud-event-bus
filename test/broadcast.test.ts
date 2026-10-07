@@ -11,7 +11,7 @@ declare global {
 	}
 }
 
-const channelName = 'nextcloud:event-bus:/nextcloud'
+const channelName = 'nextcloud:event-bus:v1:/nextcloud'
 let otherTab: BroadcastChannel
 
 /**
@@ -67,8 +67,8 @@ beforeEach(() => {
 
 afterEach(() => {
 	otherTab.close()
-	window._nc_event_bus_channel?.channel?.close()
-	delete window._nc_event_bus_channel
+	window._nc_event_bus_channel_v1?.close()
+	delete window._nc_event_bus_channel_v1
 	delete window._nc_event_bus
 	delete window._oc_webroot
 	document.head.removeAttribute('data-user')
@@ -124,12 +124,12 @@ test('events from other tabs are emitted once with several copies of the package
 	expect(handler).toHaveBeenCalledOnce()
 })
 
-test('the channel owner is stored with its version', async () => {
+test('the channel is stored under a versioned global', async () => {
 	const { subscribe } = await loadPackage()
 
 	subscribe('files:node:updated', vi.fn())
 
-	expect(window._nc_event_bus_channel).toEqual({ version: expect.any(String), channel: expect.any(BroadcastChannel) })
+	expect(window._nc_event_bus_channel_v1).toBeInstanceOf(BroadcastChannel)
 })
 
 test('unknown messages are ignored', async () => {
@@ -146,7 +146,7 @@ test('unknown messages are ignored', async () => {
 
 test('another instance on the same origin does not receive the events', async () => {
 	const { broadcast } = await loadPackage()
-	const otherInstance = new BroadcastChannel('nextcloud:event-bus:/other')
+	const otherInstance = new BroadcastChannel('nextcloud:event-bus:v1:/other')
 	const received = listen(otherInstance)
 
 	broadcast('files:node:updated', { fileid: 42 })
@@ -165,7 +165,7 @@ test('public pages do not broadcast', async () => {
 	await settle()
 
 	expect(received).toEqual([])
-	expect(window._nc_event_bus_channel).toEqual({ version: expect.any(String), channel: null })
+	expect(window._nc_event_bus_channel_v1).toBeNull()
 })
 
 test('a payload that cannot be cloned is not sent', async () => {

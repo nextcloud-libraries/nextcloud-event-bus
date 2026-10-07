@@ -118,7 +118,7 @@ export function broadcast<K extends keyof NextcloudEvents & string>(
 	// Opens the channel of this tab on first use
 	getBus()
 
-	const channel = typeof window === 'undefined' ? null : window._nc_event_bus_channel?.channel
+	const channel = typeof window === 'undefined' ? null : window._nc_event_bus_channel_v1
 	if (channel) {
 		postBroadcast(channel, name, event[0])
 	}
