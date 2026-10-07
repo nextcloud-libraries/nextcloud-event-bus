@@ -44,17 +44,19 @@ function isUserLoggedIn(): boolean {
  *
  * Several copies of this package can be loaded on one page, the first one
  * owns the channel so every received event is emitted on the bus only once.
+ * The global and the channel name carry the protocol version: a copy with a
+ * different message format opens its own channel instead of sharing this one.
  *
  * @param bus - The event bus to emit received events on
  */
 export function setupBroadcastChannel(bus: EventBus): BroadcastChannel | null {
-	if (window._nc_event_bus_channel !== undefined) {
-		return window._nc_event_bus_channel.channel
+	if (window._nc_event_bus_channel_v1 !== undefined) {
+		return window._nc_event_bus_channel_v1
 	}
 
 	let channel: BroadcastChannel | null = null
 	if (isUserLoggedIn() && typeof BroadcastChannel !== 'undefined') {
-		channel = new BroadcastChannel(`nextcloud:event-bus:${getRootUrl()}`)
+		channel = new BroadcastChannel(`nextcloud:event-bus:v${PROTOCOL_VERSION}:${getRootUrl()}`)
 		channel.addEventListener('message', ({ data }: MessageEvent) => {
 			if (isBroadcastMessage(data)) {
 				bus.emit(data.name, data.event)
@@ -62,7 +64,7 @@ export function setupBroadcastChannel(bus: EventBus): BroadcastChannel | null {
 		})
 	}
 
-	window._nc_event_bus_channel = { version: PACKAGE_VERSION, channel }
+	window._nc_event_bus_channel_v1 = channel
 	return channel
 }
 
