@@ -13,6 +13,7 @@ declare global {
 			_eventBus?: EventBus
 		}
 		_nc_event_bus?: EventBus
+		_nc_event_bus_channel_v1?: BroadcastChannel | null
 	}
 }
 
