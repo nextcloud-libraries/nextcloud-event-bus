@@ -79,6 +79,11 @@ export function postBroadcast(channel: BroadcastChannel, name: string, event: Ev
 	try {
 		channel.postMessage({ version: PROTOCOL_VERSION, name, event } satisfies BroadcastMessage)
 	} catch (error) {
-		console.error('could not broadcast the event to other tabs, the payload must be plain data (e.g. the result of toJSON())', error)
+		// Checked by name: the DOMException class can differ between realms
+		if ((error as { name?: unknown } | null)?.name === 'DataCloneError') {
+			console.error('could not broadcast the event to other tabs, the payload must be plain data (e.g. the result of toJSON())', error)
+			return
+		}
+		console.error('could not broadcast the event to other tabs', error)
 	}
 }

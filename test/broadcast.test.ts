@@ -161,6 +161,19 @@ test('a payload that cannot be cloned is not sent', async () => {
 	expect(error).toHaveBeenCalledWith(expect.stringContaining('toJSON()'), expect.anything())
 })
 
+test('other broadcast errors are logged without the payload hint', async () => {
+	const { broadcast } = await loadPackage()
+	const error = vi.spyOn(console, 'error').mockImplementation(() => {})
+	broadcast('files:node:updated', { fileid: 41 })
+	// Posting on a closed channel fails with an InvalidStateError
+	window._nc_event_bus_channel_v1!.close()
+
+	broadcast('files:node:updated', { fileid: 42 })
+
+	expect(error).toHaveBeenCalledWith('could not broadcast the event to other tabs', expect.objectContaining({ name: 'InvalidStateError' }))
+	expect(error).not.toHaveBeenCalledWith(expect.stringContaining('toJSON()'), expect.anything())
+})
+
 test('a string payload reaches the other tabs as is', async () => {
 	const { broadcast } = await loadPackage()
 	const received = listen()
