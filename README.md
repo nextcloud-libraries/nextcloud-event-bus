@@ -74,6 +74,7 @@ Broadcast what the user changed in this tab and other tabs show too. Keep everyt
 | Sidebar opened, modal shown, selection changed | `emit` | Only this tab's UI |
 | Upload progress | `emit` | Each tab tracks its own uploads |
 | Updates from polling or notify_push | `emit` | Every tab already receives them, broadcasting would duplicate |
+| Updates from leading tab | `broadcast` | Only one tab has the data, broadcasting is required, emitting is optional |
 | Payloads holding Vue components, DOM nodes or other live objects | `emit` | Cannot be copied to another tab |
 
 ### Typed events
