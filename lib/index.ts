@@ -8,6 +8,7 @@ import type { EventBus } from './EventBus.ts'
 import type { EventHandler } from './EventHandler.ts'
 import type { IsUndefined } from './types.ts'
 
+import { postBroadcast, setupBroadcastChannel } from './broadcast.ts'
 import { ProxyBus } from './ProxyBus.ts'
 import { SimpleBus } from './SimpleBus.ts'
 
@@ -50,6 +51,7 @@ function getBus(): EventBus {
 	} else {
 		bus = window._nc_event_bus = new SimpleBus()
 	}
+	setupBroadcastChannel(bus)
 	return bus
 }
 
@@ -94,4 +96,30 @@ export function emit<K extends keyof NextcloudEvents>(
 		: [NextcloudEvents[K]]
 ): void {
 	getBus().emit(name, ...event)
+}
+
+/**
+ * Emit an event on the event bus of the other tabs of this Nextcloud instance.
+ * Like `BroadcastChannel`, the current tab does not receive it: also call
+ * `emit()` if it should. On public pages nothing is sent.
+ *
+ * The payload is copied with the structured clone algorithm: other tabs
+ * receive plain data, class instances lose their prototype.
+ *
+ * @param name Name of the event to broadcast
+ * @param event Event payload to broadcast
+ */
+export function broadcast<K extends keyof NextcloudEvents & string>(
+	name: K,
+	...event: IsUndefined<NextcloudEvents[K]> extends true
+		? []
+		: [NextcloudEvents[K]]
+): void {
+	// Opens the channel of this tab on first use
+	getBus()
+
+	const channel = typeof window === 'undefined' ? null : window._nc_event_bus_channel_v1
+	if (channel) {
+		postBroadcast(channel, name, event[0])
+	}
 }
