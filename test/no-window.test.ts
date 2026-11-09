@@ -36,6 +36,12 @@ describe('Handle no window', () => {
 		expect(consoleError.mock.calls[0][0]).toMatch(/Window not available/)
 	})
 
+	test('Broadcast without window', async () => {
+		const { broadcast } = await import('../lib/index.ts')
+
+		expect(() => broadcast('test', { txt: 'hello' })).not.toThrow()
+	})
+
 	test('No bus on window available', async () => {
 		// @ts-expect-error Just for testing make sure there is no window
 		globalThis.window = {}

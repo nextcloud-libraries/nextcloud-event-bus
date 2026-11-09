@@ -41,6 +41,7 @@ test('exports', async () => {
 	expect(Object.keys(ex)).toEqual(expect.arrayContaining([
 		'subscribe',
 		'unsubscribe',
+		'broadcast',
 		'SimpleBus',
 		'ProxyBus',
 	]))
