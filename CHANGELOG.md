@@ -7,6 +7,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.4.0-beta.0](https://github.com/nextcloud-libraries/nextcloud-event-bus/tree/v3.4.0-beta.0) \(2026-11-25\)
+
+### Added
+
+- feat: add `broadcast()` to emit events to the other tabs ([#600](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/600))
+
+### Changed
+
+- refactor: use ESLint also for formatting (ESLint v9) ([#1014](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/1014))
+- chore: adjust `devEngines` to make dependabot work ([#1016](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/1016))
+- ci: update workflow templates from the organization template repository ([#1092](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/1092), [#1100](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/1100), [#1120](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/1120), [#1190](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/1190))
+- Add `@nextcloud/router` 3.2.0 as a dependency
+- Bump @nextcloud/eslint-config from 8.4.2 to 9.0.1
+- Bump @nextcloud/vite-config from 2.3.5 to 2.5.4
+- Bump @types/node from 24.0.3 to 26.6.6
+- Bump @types/semver from 7.7.0 to 7.8.0
+- Bump @vitest/coverage-v8 from 3.2.4 to 5.1.0
+- Bump eslint from 8.57.1 to 10.15.0
+- Bump happy-dom from 18.0.1 to 21.0.4
+- Bump semver from 7.7.2 to 7.8.6
+- Bump typedoc from 0.28.5 to 0.28.20
+- Bump typescript from 5.8.3 to 6.0.3
+- Bump vite from 6.3.5 to 7.3.7
+- Bump vitest from 3.2.4 to 5.1.0
+
 ## [v3.3.3](https://github.com/nextcloud-libraries/nextcloud-event-bus/tree/v3.3.3) \(2025-11-07\)
 
 ### Changed
