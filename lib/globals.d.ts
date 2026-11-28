@@ -14,6 +14,7 @@ declare global {
 		}
 		_nc_event_bus?: EventBus
 		_nc_event_bus_channel_v1?: BroadcastChannel | null
+		_nc_event_bus_deserializers_v1?: Map<string, (data: unknown) => import('./Event.ts').Event>
 	}
 }
 

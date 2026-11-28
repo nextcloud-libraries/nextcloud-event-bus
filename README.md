@@ -41,16 +41,15 @@ unsubscribe('b', h)
 
 ### Other tabs
 
-`emit` only reaches the current browser tab. `broadcast` sends the event to the other tabs of the same Nextcloud instance through a [`BroadcastChannel`](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API). Like `BroadcastChannel`, the current tab does not receive it: also call `emit` if it should. Public pages do not broadcast.
+`emit` only reaches the current browser tab. `broadcast` emits the event in the current tab and sends it to the other tabs of the same Nextcloud instance through a [`BroadcastChannel`](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API). On public pages it only emits in the current tab.
 
 ```js
-import { broadcast, emit } from '@nextcloud/event-bus'
+import { broadcast } from '@nextcloud/event-bus'
 
-emit('my-app:item:updated', { id: 42 })
 broadcast('my-app:item:updated', { id: 42 })
 ```
 
-On the receiving side nothing changes: `subscribe()` gets events from `emit()` in the same tab and from `broadcast()` in other tabs alike.
+On the receiving side nothing changes: `subscribe()` gets events from `emit()` and `broadcast()` alike, from this tab and from the other tabs.
 
 ```js
 import { subscribe } from '@nextcloud/event-bus'
@@ -58,8 +57,27 @@ import { subscribe } from '@nextcloud/event-bus'
 subscribe('my-app:item:updated', ({ id }) => refresh(id))
 ```
 
-- The payload is copied with the [structured clone algorithm](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm): other tabs receive plain data, class instances lose their prototype. A payload that cannot be cloned is not sent. `@nextcloud/files` nodes are in that case: broadcast `node.toJSON()` and rebuild the node in the subscribers.
+- Other tabs receive a copy made with the [structured clone algorithm](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm): plain data, class instances lose their prototype. A payload that cannot be cloned is only emitted in the current tab.
 - Every open tab receives the event, so broadcast the result of something the user did in this tab, not something each tab computes on its own.
+
+#### Payloads that cannot be cloned
+
+Pass a `serialize` option to send something else to the other tabs, and register how to rebuild it for that event. Subscribers in the current tab still get the original payload.
+
+```js
+import { File, Folder } from '@nextcloud/files'
+import { broadcast, registerBroadcastDeserializer } from '@nextcloud/event-bus'
+
+// In every tab that should receive it, once
+registerBroadcastDeserializer('files:node:updated', (json) => {
+	const [data, davService] = JSON.parse(json)
+	return data.mime === 'httpd/unix-directory' ? new Folder(data, davService) : new File(data, davService)
+})
+
+broadcast('files:node:updated', node, { serialize: (node) => node.toJSON() })
+```
+
+A tab without a deserializer for that event drops it and logs a warning.
 
 #### When to use which
 
@@ -67,14 +85,14 @@ Broadcast what the user changed in this tab and other tabs show too. Keep everyt
 
 | Event | Use | Why |
 |---|---|---|
-| File favorited, renamed, moved or deleted | `emit` + `broadcast` | Other tabs list the same files |
-| Display name, avatar or status changed | `emit` + `broadcast` | Shown in every tab's header |
-| User setting toggled (hidden files, grid view, theme) | `emit` + `broadcast` | Should apply everywhere |
-| Notification dismissed or marked read | `emit` + `broadcast` | Avoids it popping up again elsewhere |
+| File favorited, renamed, moved or deleted | `broadcast` with `serialize` | Other tabs list the same files |
+| Display name, avatar or status changed | `broadcast` | Shown in every tab's header |
+| User setting toggled (hidden files, grid view, theme) | `broadcast` | Should apply everywhere |
+| Notification dismissed or marked read | `broadcast` | Avoids it popping up again elsewhere |
 | Sidebar opened, modal shown, selection changed | `emit` | Only this tab's UI |
 | Upload progress | `emit` | Each tab tracks its own uploads |
 | Updates from polling or notify_push | `emit` | Every tab already receives them, broadcasting would duplicate |
-| Updates from leading tab | `broadcast` | Only one tab has the data, broadcasting is required, emitting is optional |
+| Updates from a leading tab | `broadcast` | Only one tab has the data |
 | Payloads holding Vue components, DOM nodes or other live objects | `emit` | Cannot be copied to another tab |
 
 ### Typed events

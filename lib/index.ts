@@ -9,6 +9,9 @@ import type { EventHandler } from './EventHandler.ts'
 import type { IsUndefined } from './types.ts'
 
 import { postBroadcast, setupBroadcastChannel } from './broadcast.ts'
+
+export type { BroadcastDeserializer } from './broadcast.ts'
+export { registerBroadcastDeserializer } from './broadcast.ts'
 import { ProxyBus } from './ProxyBus.ts'
 import { SimpleBus } from './SimpleBus.ts'
 
@@ -99,27 +102,39 @@ export function emit<K extends keyof NextcloudEvents>(
 }
 
 /**
- * Emit an event on the event bus of the other tabs of this Nextcloud instance.
- * Like `BroadcastChannel`, the current tab does not receive it: also call
- * `emit()` if it should. On public pages nothing is sent.
+ * Options of `broadcast()`
+ */
+export interface BroadcastOptions<T> {
+	/**
+	 * Turn the payload into structured cloneable data for the other tabs, e.g. `(node) => node.toJSON()`.
+	 * The tabs receiving it need a deserializer registered with `registerBroadcastDeserializer()`.
+	 * Subscribers in the current tab still get the original payload.
+	 */
+	serialize?: (event: T) => unknown
+}
+
+/**
+ * Emit an event in this tab and in the other tabs of this Nextcloud instance.
+ * On public pages it is only emitted in this tab.
  *
- * The payload is copied with the structured clone algorithm: other tabs
- * receive plain data, class instances lose their prototype.
+ * Other tabs receive a copy made with the structured clone algorithm: plain data, class
+ * instances lose their prototype. Use the `serialize` option for payloads that cannot be cloned.
  *
  * @param name Name of the event to broadcast
- * @param event Event payload to broadcast
+ * @param args Event payload, and the broadcast options
  */
 export function broadcast<K extends keyof NextcloudEvents & string>(
 	name: K,
-	...event: IsUndefined<NextcloudEvents[K]> extends true
+	...args: IsUndefined<NextcloudEvents[K]> extends true
 		? []
-		: [NextcloudEvents[K]]
+		: [NextcloudEvents[K], BroadcastOptions<NextcloudEvents[K]>?]
 ): void {
-	// Opens the channel of this tab on first use
-	getBus()
+	const [event, options] = args as [NextcloudEvents[K]?, BroadcastOptions<NextcloudEvents[K]>?]
+	// Also opens the channel of this tab on first use
+	emit(name, ...(args.slice(0, 1) as IsUndefined<NextcloudEvents[K]> extends true ? [] : [NextcloudEvents[K]]))
 
 	const channel = typeof window === 'undefined' ? null : window._nc_event_bus_channel_v1
 	if (channel) {
-		postBroadcast(channel, name, event[0])
+		postBroadcast(channel, name, event, options?.serialize as ((event: unknown) => unknown) | undefined)
 	}
 }
