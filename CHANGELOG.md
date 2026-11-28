@@ -7,11 +7,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v3.4.0-beta.0](https://github.com/nextcloud-libraries/nextcloud-event-bus/tree/v3.4.0-beta.0) \(2026-11-25\)
+## [v3.4.0-beta.1](https://github.com/nextcloud-libraries/nextcloud-event-bus/tree/v3.4.0-beta.1) \(2026-11-28\)
 
 ### Added
 
 - feat: add `broadcast()` to emit events to the other tabs ([#600](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/600))
+
+### Fixed
+
+- fix: point the package metadata to the nextcloud-libraries repository ([#1205](https://github.com/nextcloud-libraries/nextcloud-event-bus/pull/1205))
 
 ### Changed
 
