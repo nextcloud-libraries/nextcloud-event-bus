@@ -13,7 +13,60 @@ const PROTOCOL_VERSION = 1
 interface BroadcastMessage {
 	version: typeof PROTOCOL_VERSION
 	name: string
-	event: Event
+	event: unknown
+	/** Whether `event` went through the `serialize` option of `broadcast()` */
+	serialized: boolean
+}
+
+/**
+ * Turns the serialized payload of an event back into what its subscribers expect
+ */
+export type BroadcastDeserializer = (data: unknown) => Event
+
+/**
+ * The deserializers by event name, shared by every copy of this package on the page
+ */
+function getDeserializers(): Map<string, BroadcastDeserializer> {
+	window._nc_event_bus_deserializers_v1 ??= new Map()
+	return window._nc_event_bus_deserializers_v1
+}
+
+/**
+ * Register how to rebuild the payload of an event that is broadcast with a `serialize` option
+ *
+ * @param name - Name of the event
+ * @param deserialize - Turns the serialized payload back into the event payload
+ */
+export function registerBroadcastDeserializer(name: string, deserialize: BroadcastDeserializer): void {
+	getDeserializers().set(name, deserialize)
+}
+
+/**
+ * Emit an event received from another tab, deserializing its payload when needed
+ *
+ * @param bus - The event bus of this tab
+ * @param message - The message received
+ */
+function emitReceived(bus: EventBus, message: BroadcastMessage): void {
+	if (!message.serialized) {
+		bus.emit(message.name, message.event as Event)
+		return
+	}
+
+	const deserialize = getDeserializers().get(message.name)
+	if (deserialize === undefined) {
+		console.warn(`dropped the broadcast event ${message.name}: no deserializer registered for it in this tab`)
+		return
+	}
+
+	let event: Event
+	try {
+		event = deserialize(message.event)
+	} catch (error) {
+		console.error(`could not deserialize the broadcast event ${message.name}`, error)
+		return
+	}
+	bus.emit(message.name, event)
 }
 
 /**
@@ -24,6 +77,7 @@ function isBroadcastMessage(data: unknown): data is BroadcastMessage {
 		&& data !== null
 		&& (data as BroadcastMessage).version === PROTOCOL_VERSION
 		&& typeof (data as BroadcastMessage).name === 'string'
+		&& typeof (data as BroadcastMessage).serialized === 'boolean'
 }
 
 /**
@@ -59,7 +113,7 @@ export function setupBroadcastChannel(bus: EventBus): BroadcastChannel | null {
 		channel = new BroadcastChannel(`nextcloud:event-bus:v${PROTOCOL_VERSION}:${getRootUrl()}`)
 		channel.addEventListener('message', ({ data }: MessageEvent) => {
 			if (isBroadcastMessage(data)) {
-				bus.emit(data.name, data.event)
+				emitReceived(bus, data)
 			}
 		})
 	}
@@ -73,15 +127,26 @@ export function setupBroadcastChannel(bus: EventBus): BroadcastChannel | null {
  *
  * @param channel - The channel of this tab
  * @param name - Name of the event
- * @param event - Event payload, must be structured cloneable
+ * @param event - Event payload, structured cloneable unless `serialize` is given
+ * @param serialize - Turns the payload into structured cloneable data
  */
-export function postBroadcast(channel: BroadcastChannel, name: string, event: Event): void {
+export function postBroadcast(channel: BroadcastChannel, name: string, event: Event, serialize?: (event: Event) => unknown): void {
+	let data: unknown = event
+	if (serialize !== undefined) {
+		try {
+			data = serialize(event)
+		} catch (error) {
+			console.error(`could not serialize the event ${name} for the other tabs`, error)
+			return
+		}
+	}
+
 	try {
-		channel.postMessage({ version: PROTOCOL_VERSION, name, event } satisfies BroadcastMessage)
+		channel.postMessage({ version: PROTOCOL_VERSION, name, event: data, serialized: serialize !== undefined } satisfies BroadcastMessage)
 	} catch (error) {
 		// Checked by name: the DOMException class can differ between realms
 		if ((error as { name?: unknown } | null)?.name === 'DataCloneError') {
-			console.error('could not broadcast the event to other tabs, the payload must be plain data (e.g. the result of toJSON())', error)
+			console.error('could not broadcast the event to other tabs, the payload must be plain data, or use the serialize option', error)
 			return
 		}
 		console.error('could not broadcast the event to other tabs', error)
